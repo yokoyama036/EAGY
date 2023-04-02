@@ -9,13 +9,14 @@
 - Active Storage
 - chat GPT API
 # 実行手順
+```
 $git clone git@github.com:kasumisogabe/PetalPush.git
 $cd PetalPush
 $bundle install
 $yarn install
 $rails db:create && rails db:migrate
 $rails s
-
+```
 # カタログ設計
 https://onedrive.live.com/edit.aspx?resid=3A230FDF4FD5C3A4!2443&ithint=file%2cxlsx&ct=1680414081405&wdOrigin=OFFICECOM-WEB.MAIN.EDGEWORTH
 # テーブル定義書
