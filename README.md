@@ -18,14 +18,14 @@ $rails db:create && rails db:migrate
 $rails s
 ```
 # カタログ設計
-https://onedrive.live.com/edit.aspx?resid=3A230FDF4FD5C3A4!2443&ithint=file%2cxlsx&ct=1680414081405&wdOrigin=OFFICECOM-WEB.MAIN.EDGEWORTH
+https://1drv.ms/x/s!AqTD1U_fDyM6kwuH3-2U58W59UGv?e=Umj0Ud
 # テーブル定義書
-https://onedrive.live.com/edit.aspx?resid=3A230FDF4FD5C3A4!2443&ithint=file%2cxlsx&ct=1680414081405&wdOrigin=OFFICECOM-WEB.MAIN.EDGEWORTH
+https://1drv.ms/x/s!AqTD1U_fDyM6kwuH3-2U58W59UGv?e=Umj0Ud
 # ワイヤーフレーム
 https://www.figma.com/file/q5fEopeQqLlLQv9CJXPG6W/EAGY%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?node-id=0%3A1&t=TGecILtT7SIL38IL-1
 
 # ER図
-![Entity Relationship Diagram](https://user-images.githubusercontent.com/122012854/229332940-6763b3c0-17a1-48e4-888a-6c0e13fbf2ef.png)
+![Entity Relationship Diagram (2)](https://user-images.githubusercontent.com/122012854/229343470-35728e39-cf62-4ce0-abc2-0eeadbbc5e43.png)
 
 # 画面遷移図
 ![Sitemap](https://user-images.githubusercontent.com/122012854/229332977-dbfd58a3-11c5-4176-8026-689eee985513.png)
