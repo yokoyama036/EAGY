@@ -10,8 +10,8 @@
 - chat GPT API
 # 実行手順
 ```
-$git clone git@github.com:kasumisogabe/PetalPush.git
-$cd PetalPush
+$git clone git@github.com:yokoyama036/EAGY.git
+$cd EAGY
 $bundle install
 $yarn install
 $rails db:create && rails db:migrate
