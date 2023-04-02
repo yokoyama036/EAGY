@@ -25,7 +25,7 @@ https://1drv.ms/x/s!AqTD1U_fDyM6kwuH3-2U58W59UGv?e=Umj0Ud
 https://www.figma.com/file/q5fEopeQqLlLQv9CJXPG6W/EAGY%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?node-id=0%3A1&t=TGecILtT7SIL38IL-1
 
 # ER図
-![Entity Relationship Diagram (2)](https://user-images.githubusercontent.com/122012854/229343470-35728e39-cf62-4ce0-abc2-0eeadbbc5e43.png)
+![Entity Relationship Diagram (3)](https://user-images.githubusercontent.com/122012854/229348844-0548c453-8b33-4629-b99b-2e72c75bc144.png)
 
 # 画面遷移図
 ![Sitemap](https://user-images.githubusercontent.com/122012854/229332977-dbfd58a3-11c5-4176-8026-689eee985513.png)
