@@ -1,0 +1,2 @@
+class UserPhysicalInformation < ApplicationRecord
+end

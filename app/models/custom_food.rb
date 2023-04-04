@@ -1,0 +1,2 @@
+class CustomFood < ApplicationRecord
+end
