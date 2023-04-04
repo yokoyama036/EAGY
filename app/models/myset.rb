@@ -1,0 +1,2 @@
+class Myset < ApplicationRecord
+end

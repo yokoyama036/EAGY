@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  food_id: 
+  user_id: 
+  myset_id: 
+  amount: 1
+  meal_timing: MyString
+  date: 2023-04-04
+  custom_id: 
+  comment: MyString
+
+two:
+  food_id: 
+  user_id: 
+  myset_id: 
+  amount: 1
+  meal_timing: MyString
+  date: 2023-04-04
+  custom_id: 
+  comment: MyString

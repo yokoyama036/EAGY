@@ -1,0 +1,2 @@
+class MysetFood < ApplicationRecord
+end
