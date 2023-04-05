@@ -14,7 +14,7 @@
     <li class="list-unstyled">
       <% if user_signed_in? %>
         <%= link_to "Profile", user_path(current_user.id) %>
-        <%= link_to "Logout", destroy_user_session_path(current_user.id), method: :delete %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       <% end %>
   </header>
     <%= yield %>
