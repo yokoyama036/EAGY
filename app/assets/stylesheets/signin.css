@@ -5,7 +5,7 @@
 }
 .box {
   width: 350px;
-  height: 450px;
+  height: 420px;
   margin: 60px auto 0;
   border-radius: 4px;
   border: 1px #ddd solid;
@@ -105,7 +105,7 @@ h1 {
 
 .box-newusr a {
   display: block;
-  width: 100%;
+  width: 80%;
   height: 31px;
   font-size: 13px;
   color: #111;
@@ -114,6 +114,7 @@ h1 {
   background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
   border-radius: 3px;
   border: 1px #a2a6ac solid;
+  margin: 0 auto;
 }
 
 .box-newusr a:hover {
