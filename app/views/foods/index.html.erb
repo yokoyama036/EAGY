@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>食品一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>食品名</th>
+      <th>カロリー</th>
+      <th>タンパク質</th>
+      <th>炭水化物</th>
+      <th>脂質</th>
+      <th>塩分</th>
+      <th>単位数量</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @foods.each do |f| %>
+      <tr>
+        <td><%= f.name %></td>
+        <td><%= f.calorie %></td>
+        <td><%= f.protein %></td>
+        <td><%= f.carbo %></td>
+        <td><%= f.fat %></td>
+        <td><%= f.salt %></td>
+        <td><%= f.unit %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
