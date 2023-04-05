@@ -9,8 +9,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+  <header class = "header">
+    <li class="list-unstyled">
+      <% if user_signed_in? %>
+        <%= link_to "Profile", user_path(current_user.id) %>
+        <%= link_to "Logout", destroy_user_session_path(current_user.id), method: :delete %>
+      <% end %>
+  </header>
     <%= yield %>
   </body>
 </html>
