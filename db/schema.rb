@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_05_105602) do
+ActiveRecord::Schema.define(version: 2023_04_08_111740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2023_04_05_105602) do
     t.bigint "user_id", null: false
     t.bigint "myset_id"
     t.integer "amount"
-    t.string "meal_timing"
+    t.integer "meal_timing"
     t.date "date", null: false
     t.bigint "custom_id"
     t.string "comment"

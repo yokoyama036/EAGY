@@ -1,0 +1,8 @@
+<%= month_calendar do |date| %>
+  <%= date.day %>
+  <% if @daily_records.present? %>
+    <%= link_to "詳細", daily_record_path(daily_records.first) %>
+  <% else %>
+    <%= link_to "記録する", new_daily_record_path(date: date) %>
+  <% end %>
+<% end %>
