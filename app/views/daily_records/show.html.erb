@@ -54,15 +54,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @records.each do |f| %>
+    <% @daily_record_items.each do |item| %>
       <tr>
-        <td><%= f.name %></td>
-        <td><%= f.calorie %></td>
-        <td><%= f.protein %></td>
-        <td><%= f.carbo %></td>
-        <td><%= f.fat %></td>
-        <td><%= f.salt %></td>
-        <td><%= f.unit %></td>
+      <td><%= item.food.name %></td>
+      <td><%= item.food.calorie %></td>
+      <td><%= item.food.protein %></td>
+      <td><%= item.food.carbo %></td>
+      <td><%= item.food.fat %></td>
+      <td><%= item.food.salt %></td>
+      <td><%= item.food.unit %></td>
       </tr>
     <% end %>
   </tbody>

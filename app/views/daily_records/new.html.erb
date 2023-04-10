@@ -55,7 +55,7 @@ input[name="tab_item"] {
   color: #fff;
 }
 </style>
-
+<%= notice %>
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
   <label class="tab_item" for="all">食材検索</label>
@@ -82,24 +82,30 @@ input[name="tab_item"] {
               <th>食事分類</th>
             </tr>
           </thead>
-          <tbody>
           <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
+            <div class="field">
+              <%= form.label :date %>
+              <%= form.date_field :date %>
+          <tbody>
+            </div>
             <% @foods.each do |f| %>
-              <tr>
-                <td><%= form.check_box :food_id, { multiple: true }, f.id, nil %></td>
-                <td><%= f.name %></td>
-                <td><%= f.calorie %></td>
-                <td><%= f.protein %></td>
-                <td><%= f.carbo %></td>
-                <td><%= f.fat %></td>
-                <td><%= f.salt %></td>
-                <td><%= f.unit %></td>
-                <td>
-                <div class="field">
-                    <%= form.select :meal_timing, DailyRecord.meal_timings.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
-                </div>
-                </td>
-              </tr>
+              <%= form.fields_for :daily_record_items do |item_form| %>
+                <tr>
+                  <td><%= item_form.check_box :food_id, { multiple: true }, f.id, nil %></td>
+                  <td><%= f.name %></td>
+                  <td><%= f.calorie %></td>
+                  <td><%= f.protein %></td>
+                  <td><%= f.carbo %></td>
+                  <td><%= f.fat %></td>
+                  <td><%= f.salt %></td>
+                  <td><%= f.unit %></td>
+                  <td>
+                  <div class="field">
+                      <%= item_form.select :meal_timing, options_for_select(DailyRecordItem.meal_timings), {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+                  </div>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>

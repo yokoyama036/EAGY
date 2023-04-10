@@ -8,14 +8,20 @@ class DailyRecordsController < ApplicationController
     @daily_record = DailyRecord.new(date: params[:date])
     @foods = Food.all
     @mysets = Myset.all
+    @daily_record.daily_record_items.build
   end
 
   def create
-    @daily_record = DailyRecord.new(food_id: params[:daily_record][:food_id], user_id: current_user.id)
-
+    # puts "Before: #{daily_record_params.inspect}"
+    @daily_record = DailyRecord.new(daily_record_params)
+    # puts "After: #{@daily_record.inspect}"
+    #  @daily_record = DailyRecord.new(user_id: current_user.id, meal_timing: params[:daily_record][:meal_timing], date: params[:daily_record][:date], comment: params[:daily_record][:comment])
+    # @daily_record = DailyRecord.new(user_id: current_user.id, date: params[:daily_record][:date], comment: params[:daily_record][:comment])
     if @daily_record.save
       redirect_to @daily_record, notice: '記録しました。'
     else
+      @foods = Food.all
+      @mysets = Myset.all
       render :new
     end
   end
@@ -33,12 +39,13 @@ class DailyRecordsController < ApplicationController
   end
 
   def show
-
+    @daily_record = DailyRecord.find(params[:id])
+    @daily_record_items = @daily_record.daily_record_items
   end
   
   private
 
   def daily_record_params
-    params.require(:daily_record).permit(:food_id, :myset_id, :amount, :meal_timing, :date, :custom_id, :comment)
+    params.require(:daily_record).permit(:date, :comment, daily_record_items_attributes: [:id, :amount, :myset_id, :food_id, :custom_food_id, :meal_timing, :_destroy])
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_08_111740) do
+ActiveRecord::Schema.define(version: 2023_04_09_105936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,14 +56,24 @@ ActiveRecord::Schema.define(version: 2023_04_08_111740) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "daily_records", force: :cascade do |t|
+  create_table "daily_record_items", force: :cascade do |t|
+    t.bigint "daily_record_id", null: false
     t.bigint "food_id"
-    t.bigint "user_id", null: false
     t.bigint "myset_id"
+    t.bigint "custom_food_id"
     t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "meal_timing"
+    t.index ["custom_food_id"], name: "index_daily_record_items_on_custom_food_id"
+    t.index ["daily_record_id"], name: "index_daily_record_items_on_daily_record_id"
+    t.index ["food_id"], name: "index_daily_record_items_on_food_id"
+    t.index ["myset_id"], name: "index_daily_record_items_on_myset_id"
+  end
+
+  create_table "daily_records", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.date "date", null: false
-    t.bigint "custom_id"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -129,4 +139,8 @@ ActiveRecord::Schema.define(version: 2023_04_08_111740) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "daily_record_items", "custom_foods"
+  add_foreign_key "daily_record_items", "daily_records"
+  add_foreign_key "daily_record_items", "foods"
+  add_foreign_key "daily_record_items", "mysets"
 end
