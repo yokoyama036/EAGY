@@ -1,3 +1,5 @@
+<h1><%= @daily_record.date %></h1>
+
 <dl class="dl-horizontal">
   <dt>カロリー</dt>
   <dd>
@@ -41,29 +43,19 @@
   </dd>
 </dl>
 <div class ='btn btn-light'><%= link_to "食事を記録する", new_daily_record_path %></div>
-<table>
-  <thead>
-    <tr>
-      <th>食品名</th>
-      <th>カロリー</th>
-      <th>タンパク質</th>
-      <th>炭水化物</th>
-      <th>脂質</th>
-      <th>塩分</th>
-      <th>単位数量</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @daily_record_items.each do |item| %>
-      <tr>
-      <td><%= item.food.name %></td>
-      <td><%= item.food.calorie %></td>
-      <td><%= item.food.protein %></td>
-      <td><%= item.food.carbo %></td>
-      <td><%= item.food.fat %></td>
-      <td><%= item.food.salt %></td>
-      <td><%= item.food.unit %></td>
-      </tr>
-    <% end %>
+<div class ='btn btn-light'><%= link_to "食事記録の編集", edit_daily_record_path %></div>
+<div class="container">
+  <h3>朝食</h3>
+  <%= render partial: 'daily_record_items_table', locals: { daily_record_items: @daily_record_items.select { |item| item.meal_timing == '朝食' } } %>
+
+  <h3>昼食</h3>
+  <%= render partial: 'daily_record_items_table', locals: { daily_record_items: @daily_record_items.select { |item| item.meal_timing == '昼食' } } %>
+
+  <h3>夕食</h3>
+  <%= render partial: 'daily_record_items_table', locals: { daily_record_items: @daily_record_items.select { |item| item.meal_timing == '夕食' } } %>
+
+  <h3>間食</h3>
+  <%= render partial: 'daily_record_items_table', locals: { daily_record_items: @daily_record_items.select { |item| item.meal_timing == '間食' } } %>
+</div>
   </tbody>
 </table>

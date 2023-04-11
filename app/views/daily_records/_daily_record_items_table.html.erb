@@ -1,0 +1,28 @@
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>食品名</th>
+      <th>カロリー</th>
+      <th>タンパク質</th>
+      <th>炭水化物</th>
+      <th>脂質</th>
+      <th>塩分</th>
+      <th>単位数量</th>
+      <th>分量(%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% daily_record_items.each do |item| %>
+      <tr>
+        <td><%= item.food.name %></td>
+        <td><%= item.food.calorie %></td>
+        <td><%= item.food.protein %></td>
+        <td><%= item.food.carbo %></td>
+        <td><%= item.food.fat %></td>
+        <td><%= item.food.salt %></td>
+        <td><%= item.food.unit %></td>
+        <td><%= item.amount %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>

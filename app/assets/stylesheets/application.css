@@ -57,3 +57,10 @@ footer i {
 footer a {
   text-decoration: none;
 }
+.form-floating {
+  width: 20%;
+}
+.explain {
+  font-size: 12px;
+  margin-bottom: 0;
+}

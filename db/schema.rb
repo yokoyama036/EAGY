@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_09_105936) do
+ActiveRecord::Schema.define(version: 2023_04_10_070441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,10 +109,6 @@ ActiveRecord::Schema.define(version: 2023_04_09_105936) do
 
   create_table "user_physical_informations", force: :cascade do |t|
     t.string "name"
-    t.integer "tall", null: false
-    t.integer "weight", null: false
-    t.integer "age", null: false
-    t.integer "active_level"
     t.integer "metabolism"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

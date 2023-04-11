@@ -68,50 +68,50 @@ input[name="tab_item"] {
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
-        <table>
-          <thead>
-            <tr>
-              <th>食材選択</th>
-              <th>食品名</th>
-              <th>カロリー</th>
-              <th>タンパク質</th>
-              <th>炭水化物</th>
-              <th>脂質</th>
-              <th>塩分</th>
-              <th>単位数量</th>
-              <th>食事分類</th>
-            </tr>
-          </thead>
-          <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
+        <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
+          <table>
+            <thead>
+              <tr>
+                <th>食材選択</th>
+                <th>食品名</th>
+                <th>カロリー</th>
+                <th>タンパク質</th>
+                <th>炭水化物</th>
+                <th>脂質</th>
+                <th>塩分</th>
+                <th>単位数量</th>
+                <th>食事分類</th>
+              </tr>
+            </thead>
             <div class="field">
               <%= form.label :date %>
               <%= form.date_field :date %>
-          <tbody>
             </div>
-            <% @foods.each do |f| %>
-              <%= form.fields_for :daily_record_items do |item_form| %>
-                <tr>
-                  <td><%= item_form.check_box :food_id, { multiple: true }, f.id, nil %></td>
-                  <td><%= f.name %></td>
-                  <td><%= f.calorie %></td>
-                  <td><%= f.protein %></td>
-                  <td><%= f.carbo %></td>
-                  <td><%= f.fat %></td>
-                  <td><%= f.salt %></td>
-                  <td><%= f.unit %></td>
-                  <td>
-                  <div class="field">
-                      <%= item_form.select :meal_timing, options_for_select(DailyRecordItem.meal_timings), {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
-                  </div>
-                  </td>
-                </tr>
+            <tbody>
+              <% @foods.each do |f| %>
+                <%= form.fields_for :daily_record_items do |item_form| %>
+                  <tr>
+                    <td><%= item_form.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
+                    <td><%= f.name %></td>
+                    <td><%= f.calorie %></td>
+                    <td><%= f.protein %></td>
+                    <td><%= f.carbo %></td>
+                    <td><%= f.fat %></td>
+                    <td><%= f.salt %></td>
+                    <td><%= f.unit %></td>
+                    <td>
+                      <div class="field">
+                        <%= item_form.select "food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-info' %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
-            <% end %>
-          </tbody>
-        </table>
-        <br>
+            </tbody>
+          </table>
+          <br>
           <%= form.submit %>
-          <% end %>
+        <% end %>
       </p>
     </div>
   </div>

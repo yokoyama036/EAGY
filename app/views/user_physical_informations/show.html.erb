@@ -13,7 +13,11 @@
   <div class="row">
     <div class="col-md-4">
       <div class="text-center">
-        <%= image_tag("user_icon.png", alt: "User Icon", class: "img-thumbnail") %>
+      <% if @user_info.image.attached? %>
+        <%= image_tag("user_icon.png", alt: "User Icon", class: "user-icon") %>
+      <% else %>
+        <%= image_tag "default.png", size: "150x150" %>
+      <% end %>
       </div>
       <div class="mt-3">
         <%= button_tag "Add Image", type: "button", class: "btn btn-primary btn-block" %>
@@ -25,15 +29,11 @@
         <tbody>
           <tr>
             <th>Name:</th>
-            <td><%= @user.name %></td>
-          </tr>
-          <tr>
-            <th>Email:</th>
-            <td><%= @user.email %></td>
+            <td><%= @user_info.name %></td>
           </tr>
           <tr>
             <th>Metabolism:</th>
-            <td><%= @user_physical_information.metabolism %> kcal/day</td>
+            <td><%= @user_info.metabolism %> kcal/day</td>
           </tr>
           <!-- 他のユーザー情報がある場合、ここに追加 -->
         </tbody>
