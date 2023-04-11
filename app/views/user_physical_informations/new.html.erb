@@ -1,0 +1,71 @@
+<h3 class="mb-4">必要エネルギー量計算</h3>
+
+<%= form_with model: UserPhysicalInformation.new, url: user_physical_informations_path, method: :post, local: true do |form| %>
+<div class="form-floating mb-3">
+    <%= number_field_tag 'height', nil, class: 'form-control', placeholder: '身長 (cm)', step: 0.1, min: 0 %>
+    <label for="height">身長 (cm)</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= number_field_tag 'weight', nil, class: 'form-control', placeholder: '体重 (kg)', step: 0.1, min: 0 %>
+    <label for="weight">体重 (kg)</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= number_field_tag 'age', nil, class: 'form-control', placeholder: '年齢', min: 0 %>
+    <label for="age">年齢</label>
+  </div>
+
+  <div class="mb-3">
+    <label>性別:</label><br>
+    <%= radio_button_tag 'gender', 'male', true, class: 'form-check-input' %> 男性
+    <%= radio_button_tag 'gender', 'female', false, class: 'form-check-input ms-2' %> 女性
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= select_tag 'activity_level', options_for_select([
+          ['選択してください', ''],
+          ['低い', 1.50],
+          ['普通', 1.75],
+          ['高い', 2.00]
+        ]), class: 'form-select' %>
+    <label for="activity_level">身体活動レベル</label>
+  </div>
+  <button type="button" onclick="calculateEnergyRequirements()">計算</button>
+
+  <h3><p id="result"></p></h3>
+  <%= form.hidden_field :metabolism %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+
+  <%= form.submit 'Save', class: "btn btn-primary" %>
+<% end %>
+<div class="explain">
+<p> *身体活動レベルとは個人の日常生活における運動量やエネルギー消費量を表す指標です。</p>
+<p>身体活動レベルは、運動習慣や職業、生活スタイルなどによって異なりますので、以下を参考に選択してください。</p>
+<p> 低い： 主に座っている仕事で、ほとんど運動を行わない場合。例： デスクワークが中心、運動は買い物などで近所を15分程度歩く程度。</p>
+<p> 普通： 軽い運動や立ち仕事を含む日常生活。例： 軽いスポーツを日常的に行う、職場内での移動が多い、接客など立ち仕事、通勤・買い物で歩くことが多い。</p>
+<p>高い： 毎日運動を行う人や、非常に運動量の多い職業。例： 外回りの多い営業職、建設作業員、ジムでのトレーニングやスポーツ等の運動習慣がある。</p>
+</div>
+<script>
+  function calculateEnergyRequirements() {
+    const height = parseFloat(document.getElementById("height").value);
+    const weight = parseFloat(document.getElementById("weight").value);
+    const age = parseInt(document.getElementById("age").value);
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const activity_level = parseFloat(document.getElementById("activity_level").value);
+
+    let bmr;
+
+    if (gender === "male") {
+      bmr = 66.5 + (13.75 * weight) + (5.003 * height) - (6.755 * age);
+    } else {
+      bmr = 655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age);
+    }
+
+    const energy_requirement = bmr * activity_level;
+
+    document.getElementById("result").innerHTML = `必要エネルギー量: ${energy_requirement.toFixed(2)} kcal/day`;
+    document.getElementById("user_physical_information_metabolism").value = energy_requirement.toFixed(2);
+  }
+</script>

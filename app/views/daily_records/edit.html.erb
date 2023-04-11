@@ -1,0 +1,47 @@
+<h1>記録の編集</h1>
+
+<%= form_with(model: @daily_record, local: true) do |form| %>
+  <div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>食品名</th>
+        <th>カロリー</th>
+        <th>タンパク質</th>
+        <th>炭水化物</th>
+        <th>脂質</th>
+        <th>塩分</th>
+        <th>単位数量</th>
+        <th>分量(%)</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @daily_record_items.each do |item| %>
+        <%= form.fields_for :daily_record_items, item do |item_form| %>
+          <tr>
+            <td><%= item.food.name %></td>
+            <td><%= item.food.calorie %></td>
+            <td><%= item.food.protein %></td>
+            <td><%= item.food.carbo %></td>
+            <td><%= item.food.fat %></td>
+            <td><%= item.food.salt %></td>
+            <td><%= item.food.unit %></td>
+            <td>
+              <%= item_form.number_field :amount, value: item.amount || 100, min: 0, step: 1, class: 'form-control' %>
+            </td>
+            <td>
+              <%= item_form.check_box :_destroy, class: 'form-check-input' %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+  <div class="form-group mt-3">
+    <%= form.submit '更新', class: 'btn btn-primary' %>
+  </div>
+<% end %>
