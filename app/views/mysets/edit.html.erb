@@ -55,7 +55,7 @@ input[name="tab_item"] {
   color: #fff;
 }
 </style>
-
+  <h1>Myset: <%= @myset.name %> に食材を追加</h1>
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
   <label class="tab_item" for="all">食材検索</label>
@@ -66,32 +66,44 @@ input[name="tab_item"] {
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
-        <table>
-          <thead>
-            <tr>
-              <th>食品名</th>
-              <th>カロリー</th>
-              <th>タンパク質</th>
-              <th>炭水化物</th>
-              <th>脂質</th>
-              <th>塩分</th>
-              <th>単位数量</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @foods.each do |f| %>
+        <%= form_with(model: @myset, url: myset_path(@myset), method: :put, local: true) do |form| %>
+          <table>
+            <thead>
               <tr>
-                <td><%= f.name %></td>
-                <td><%= f.calorie %></td>
-                <td><%= f.protein %></td>
-                <td><%= f.carbo %></td>
-                <td><%= f.fat %></td>
-                <td><%= f.salt %></td>
-                <td><%= f.unit %></td>
+                <th>食材選択</th>
+                <th>食品名</th>
+                <th>カロリー</th>
+                <th>タンパク質</th>
+                <th>炭水化物</th>
+                <th>脂質</th>
+                <th>塩分</th>
+                <th>単位数量</th>
+                <th>分量</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table></p>
+            </thead>
+            <tbody>
+              <% @foods.each do |f| %>
+                <%= form.fields_for :myset_foods do |myset| %>
+                  <tr>
+                    <td><%= myset.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
+                      <td><%= f.name %></td>
+                      <td><%= f.calorie %></td>
+                      <td><%= f.protein %></td>
+                      <td><%= f.carbo %></td>
+                      <td><%= f.fat %></td>
+                      <td><%= f.salt %></td>
+                      <td><%= f.unit %></td>
+                      <td>
+                      <%= myset.number_field :amount, min: 0, step: 1, value: 100 %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+          <%= form.submit %>
+        <% end %>
+      </p>
     </div>
   </div>
   <div class="tab_content" id="history_content">

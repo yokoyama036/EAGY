@@ -5,7 +5,7 @@
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 700px;
+  width: 800px;
   margin: 0 auto;}
 
 /*タブのスタイル*/
@@ -39,6 +39,9 @@ input[name="tab_item"] {
   padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
+}
+.tab_content.td {
+  height: 30px;
 }
 
 /*選択されているタブのコンテンツのみを表示*/
@@ -101,7 +104,7 @@ input[name="tab_item"] {
                     <td><%= f.unit %></td>
                     <td>
                       <div class="field">
-                        <%= item_form.select "food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-info' %>
+                        <%= item_form.select "food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
                       </div>
                     </td>
                   </tr>
