@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- ここにマイセットの画像を表示 -->
+      <img src="https://via.placeholder.com/300x300" alt="マイセット画像" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <h2><%= @myset.name %></h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>食品名</th>
+            <th>単位数量</th>
+            <th>分量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @myset.myset_foods.each do |myset_food| %>
+            <tr>
+              <td><%= myset_food.food.name %></td>
+              <td><%= myset_food.food.unit %></td>
+              <td><%= myset_food.amount %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "食材を追加する", edit_myset_path(@myset), class:'btn btn-sm btn-success' %></td>
+      <%= link_to '分量の変更・項目の削除', edit_myset_food_path(@myset.id), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

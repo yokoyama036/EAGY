@@ -5,7 +5,7 @@
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 700px;
+  width: 800px;
   margin: 0 auto;}
 
 /*タブのスタイル*/
@@ -39,6 +39,9 @@ input[name="tab_item"] {
   padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
+}
+.tab_content.td {
+  height: 30px;
 }
 
 /*選択されているタブのコンテンツのみを表示*/
@@ -101,7 +104,7 @@ input[name="tab_item"] {
                     <td><%= f.unit %></td>
                     <td>
                       <div class="field">
-                        <%= item_form.select "food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-info' %>
+                        <%= item_form.select "food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
                       </div>
                     </td>
                   </tr>
@@ -141,21 +144,64 @@ input[name="tab_item"] {
           </div>
         </div>
       </div>
+      <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
         <table>
           <thead>
             <tr>
               <th>Myset名</th>
             </tr>
           </thead>
-          <tbody>
-            <% @mysets.each do |f| %>
-            <tr>
-                <td><%= f.name %></td>
-                <td><%= link_to "編集", edit_myset_path(f.id), class:'btn btn-sm btn-success' %></td>
-            </tr>
-            <% end %>
-          </tbody>
+          <div class="field">
+            <%= form.label :date %>
+            <%= form.date_field :date %>
+          </div>
+            <tbody>
+              <% @mysets.each do |f| %>
+                <%= form.fields_for :daily_record_items do |item_form| %>
+                  <tr>
+                    <td><%= item_form.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
+                    <td><%= f.name %></td>
+                    <td>
+                      <div class="field">
+                        <%= item_form.select "myset_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
+                      </div>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editMysetNameModal-<%= f.id %>">変更</button>
+                    </td>
+                    <td><%= link_to "詳細", myset_path(f.id), class:'btn btn-sm btn-success' %></td>
+                    <td><%= link_to "削除", myset_path(f.id), method: :delete, data: { confirm: "このMysetを削除してもよろしいですか？" }, class: "btn btn-danger" %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
         </table>
+        <%= form.submit %>
+      <% end %>
+        <% @mysets.each do |f| %>
+          <div class="modal fade" id="editMysetNameModal-<%= f.id %>" tabindex="-1" aria-labelledby="editMysetNameModalLabel-<%= f.id %>" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="editMysetNameModalLabel-<%= f.id %>">Myset名の変更</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <%= form_with(scope: :myset, url: myset_path(f.id), method: :put, local: true) do |m| %>
+                    <%= m.label :name %>
+                    <%= m.text_field :name %>
+                    <div class="modal-footer">
+                      <div class="actions">
+                        <%= m.submit "変更", class: "btn btn-primary" %>
+                      </div>
+                      <button type="button" class="btn btn-default" data-bs-dismiss="modal">閉じる</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
     </div>
   </div>
   <div class="tab_content" id="history_content">
