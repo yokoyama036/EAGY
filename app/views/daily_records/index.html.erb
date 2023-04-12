@@ -1,8 +1,42 @@
-<%= month_calendar do |date| %>
-  <%= date.day %>
-  <% if @daily_records.present? %>
-    
-  <% else %>
-    <%= link_to "記録する", new_daily_record_path(date: date) %>
+<style>
+.has-record {
+  background-color: #b3e5fc; /* 記録がある日付の背景色を変更 */
+}
+.no-record {
+  color: #757575; /* 記録がない日付の文字色を変更 */
+}
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
+<div class="calendar-container">
+  <%= month_calendar do |date| %>
+    <%= content_tag :div, class: "day" do %>
+      <% daily_record = current_user.daily_records.find_by(date: date) %>
+      <% if daily_record %>
+        <%= content_tag :div, class: "has-record" do %>
+          <%= link_to date.day, daily_record_path(daily_record) %>
+        <% end %>
+      <% else %>
+        <%= content_tag :div, class: "no-record" do %>
+          <%= link_to date.day, new_daily_record_path(date: date), class: "calendar-link", data: { date: "選択された日付" } %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const calendarDates = document.querySelectorAll(".calendar-date");
+    
+    calendarDates.forEach((date) => {
+      date.addEventListener("click", function() {
+        const selectedDate = this.getAttribute("data-date");
+        window.location.href = `/daily_records/new?selected_date=${selectedDate}`;
+      });
+    });
+  });
+</script>

@@ -6,6 +6,7 @@ class DailyRecordsController < ApplicationController
   
   def new
     @daily_record = DailyRecord.new(date: params[:date])
+    @selected_date = params[:selected_date]
     @foods = Food.all
     @mysets = Myset.all
     @daily_record.daily_record_items.build
