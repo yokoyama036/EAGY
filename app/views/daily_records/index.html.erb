@@ -11,6 +11,7 @@
   align-items: center;
 }
 </style>
+
 <div class="calendar-container">
   <%= month_calendar do |date| %>
     <%= content_tag :div, class: "day" do %>
@@ -21,9 +22,21 @@
         <% end %>
       <% else %>
         <%= content_tag :div, class: "no-record" do %>
-          <%= link_to date.day, new_daily_record_path(date: date) %>
+          <%= link_to date.day, new_daily_record_path(date: date), class: "calendar-link", data: { date: "選択された日付" } %>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const calendarDates = document.querySelectorAll(".calendar-date");
+    
+    calendarDates.forEach((date) => {
+      date.addEventListener("click", function() {
+        const selectedDate = this.getAttribute("data-date");
+        window.location.href = `/daily_records/new?selected_date=${selectedDate}`;
+      });
+    });
+  });
+</script>

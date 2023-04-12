@@ -88,7 +88,7 @@ input[name="tab_item"] {
             </thead>
             <div class="field">
               <%= form.label :date %>
-              <%= form.date_field :date %>
+              <%= form.date_field :date, value: @selected_date %>
             </div>
             <tbody>
               <% @foods.each do |f| %>
