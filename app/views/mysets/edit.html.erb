@@ -67,42 +67,42 @@ input[name="tab_item"] {
     <div class="tab_content_description">
       <p class="c-txtsp">
         <%= form_with(model: @myset, url: myset_path(@myset), method: :put, local: true) do |form| %>
-          <table>
-            <thead>
-              <tr>
-                <th>食材選択</th>
-                <th>食品名</th>
-                <th>カロリー</th>
-                <th>タンパク質</th>
-                <th>炭水化物</th>
-                <th>脂質</th>
-                <th>塩分</th>
-                <th>単位数量</th>
-                <th>分量</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @foods.each do |f| %>
-                <%= form.fields_for :myset_foods do |myset| %>
-                  <tr>
-                    <td><%= myset.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
-                      <td><%= f.name %></td>
-                      <td><%= f.calorie %></td>
-                      <td><%= f.protein %></td>
-                      <td><%= f.carbo %></td>
-                      <td><%= f.fat %></td>
-                      <td><%= f.salt %></td>
-                      <td><%= f.unit %></td>
-                      <td>
-                      <%= myset.number_field :amount, min: 0, step: 1, value: 100 %>
-                    </td>
-                  </tr>
-                <% end %>
+        <table>
+          <thead>
+            <tr>
+              <th>食材選択</th>
+              <th>食品名</th>
+              <th>カロリー</th>
+              <th>タンパク質</th>
+              <th>炭水化物</th>
+              <th>脂質</th>
+              <th>塩分</th>
+              <th>単位数量</th>
+              <th>分量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @foods.each_with_index do |f, index| %>
+              <%= form.fields_for "myset_foods[#{index}]", MysetFood.new(food_id: f.id) do |myset_food_form| %>
+                <tr>
+                  <td><%= myset_food_form.check_box :food_id, {checked: false}, f.id, nil %></td>
+                  <td><%= f.name %></td>
+                  <td><%= f.calorie %></td>
+                  <td><%= f.protein %></td>
+                  <td><%= f.carbo %></td>
+                  <td><%= f.fat %></td>
+                  <td><%= f.salt %></td>
+                  <td><%= f.unit %></td>
+                  <td>
+                    <%= myset_food_form.number_field :amount, min: 0, step: 1, value: 100, class: 'form-control' %>
+                  </td>
+                </tr>
               <% end %>
-            </tbody>
-          </table>
-          <%= form.submit %>
-        <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= form.submit %>
+      <% end %>
       </p>
     </div>
   </div>

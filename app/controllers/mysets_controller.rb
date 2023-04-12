@@ -25,24 +25,44 @@ class MysetsController < ApplicationController
 
   def update
     @myset = Myset.find(params[:id])
-    myset_food_params[:myset_foods_attributes].each do |index, myset_food_param|
-      @myset_food = @myset.myset_foods.build(food_id: myset_food_param[:food_id], amount: myset_food_param[:amount])
-      @myset_food.save
-    end
-
-    if @myset_food.persisted?
-      redirect_to myset_path(@myset), notice: '食材情報を追加しました。'
+    if @myset.update(myset_params)
+      # 既存のMysetFoodレコードを削除
+      # @myset.myset_foods.destroy_all
+      # 新しいMysetFoodレコードを作成して保存
+      if params[:myset][:myset_foods].present?
+        params[:myset][:myset_foods].values.each do |myset_food_param|
+          next unless myset_food_param[:food_id] # food_idがない場合はスキップ
+          food_id = myset_food_param[:food_id]
+          amount = myset_food_param[:amount]
+          @myset.myset_foods.create(food_id: food_id, amount: amount)
+        end
+      end
+      redirect_to @myset, notice: '記録を更新しました'
     else
+      @foods = Food.all
       render :edit
     end
   end
+  
+  def destroy
+    @myset = Myset.find(params[:id])
+    if @myset.destroy
+      flash[:notice] = "Mysetが削除されました。"
+      redirect_to new_daily_record_path
+    else
+      flash[:alert] = "Mysetの削除に失敗しました。"
+      redirect_to new_daily_record_path
+    end
+  end
+
 
   def show
     @myset = Myset.find(params[:id])
+    @myset_foods = @myset.myset_foods
   end
 
   private
   def myset_params
-    params.require(:myset).permit(myset_foods_attributes: [:id, :food_id, :custom_id, :amount])
+    params.require(:myset).permit(:name, myset_foods_attributes: [:id, :food_id, :amount])
   end
 end

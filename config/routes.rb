@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
   resources :mysets
+  resources :myset_foods
   resources :user_physical_informations
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
