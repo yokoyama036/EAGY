@@ -64,3 +64,16 @@ footer a {
   font-size: 12px;
   margin-bottom: 0;
 }
+.simple-calendar {
+  width: 700px;
+  align-items: center;
+}
+.calendar-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-heading a {
+  margin: 0 10px;
+}
