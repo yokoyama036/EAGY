@@ -1,49 +1,56 @@
-<h1><%= @daily_record.date %></h1>
+<h1 class="text-center"><%= @daily_record.date %></h1>
+<% energy_requirement = @user_physical_information.metabolism %>
 
-<dl class="dl-horizontal">
-  <dt>カロリー</dt>
-  <dd>
-    <div class="progress">
-      <div class="progress-bar" style="width: 100%;">
-        100
-      </div>
-    </div>
-  </dd>
-  <dt>タンパク質</dt>
-  <dd>
-    <div class="progress">
-      <div class="progress-bar" style="width: 50%;">
-        50
-      </div>
-    </div>
-  </dd>
-  <dt>炭水化物</dt>
-  <dd>
-    <div class="progress">
-      <div class="progress-bar" style="width: 70%;">
-        70
-      </div>
-    </div>
-  </dd>
-  <dt>脂質</dt>
-  <dd>
-    <div class="progress">
-      <div class="progress-bar" style="width: 30%;">
-        30
-      </div>
-    </div>
-  </dd>
-  <dt>脂質</dt>
-  <dd>
-    <div class="progress">
-      <div class="progress-bar" style="width: 30%;">
-        30
-      </div>
-    </div>
-  </dd>
-</dl>
-<div class ='btn btn-light'><%= link_to "食事を記録する", new_daily_record_path %></div>
-<div class ='btn btn-light'><%= link_to "食事記録の編集", edit_daily_record_path %></div>
+ <!-- 摂取カロリー呼び出し -->
+
+<div class="container">
+  <div class="row justify-content-center">
+    <dl class="dl-horizontal">
+      <dt>カロリー</dt>
+      <dd>
+        <div class="progress" style="width: 100%;">
+    
+           
+          </div>
+        </div>
+      </dd>
+      <dt>タンパク質</dt>
+      <dd>
+        <div class="progress" style="width: 100%;">
+          <div class="progress-bar" style="width: 50%;">
+            50
+          </div>
+        </div>
+      </dd>
+      <dt>炭水化物</dt>
+      <dd>
+        <div class="progress" style="width: 100%;">
+          <div class="progress-bar" style="width: 70%;">
+            70
+          </div>
+        </div>
+      </dd>
+      <dt>脂質</dt>
+      <dd>
+        <div class="progress" style="width: 100%;">
+          <div class="progress-bar" style="width: 30%;">
+            30
+          </div>
+        </div>
+      </dd>
+      <dt>脂質</dt>
+      <dd>
+        <div class="progress" style="width: 100%;">
+          <div class="progress-bar" style="width: 30%;">
+            30
+          </div>
+        </div>
+      </dd>
+    </dl>
+  </div>
+</div>
+<div class="record-meal-button">
+<%= link_to "食事を記録する", new_daily_record_path(date: @daily_record.date), class: 'btn btn-primary btn-lg btn-block' %></div>
 <div class="container">
   <h3>朝食</h3>
   <%= render partial: 'daily_record_items_table', locals: { daily_record_items: @daily_record_items.select { |item| item.meal_timing == '朝食' } } %>

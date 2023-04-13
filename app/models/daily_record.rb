@@ -13,4 +13,11 @@ class DailyRecord < ApplicationRecord
   def start_time
     self.date # 日常記録の日付を表すカラム
   end
+
+  # def consumed_calories
+  #   self.daily_record_items.inject(0) do |sum, item|
+  #     sum + item.food.calories * item.amount
+  #   end
+  # end
+  
 end

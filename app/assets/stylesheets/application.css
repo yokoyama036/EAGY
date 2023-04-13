@@ -77,3 +77,6 @@ footer a {
 .calendar-heading a {
   margin: 0 10px;
 }
+.record-meal-button {
+  text-align: center; 
+}

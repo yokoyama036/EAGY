@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :about
     end
   end
+  resources :daily_record_items, only: [:destroy, :update]
   resources :mysets
   resources :myset_foods
   resources :user_physical_informations
