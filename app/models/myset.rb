@@ -24,4 +24,9 @@ class Myset < ApplicationRecord
   def total_salt(amount)
     myset_foods.includes(:food).sum { |myset_food| myset_food.food.total_salt(myset_food.amount * amount / 100) }
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name]
+  end
+
 end

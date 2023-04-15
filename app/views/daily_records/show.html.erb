@@ -1,7 +1,10 @@
 <h1 class="text-center"><%= @daily_record.date %></h1>
 <% energy_requirement = @user_physical_information.metabolism %>
-
- <!-- 摂取カロリー呼び出し -->
+<% consumed_calories = @daily_record.consumed_calories %>
+<% consumed_protein = @daily_record.consumed_protein %>
+<% consumed_carbo = @daily_record.consumed_carbo %>
+<% consumed_fat = @daily_record.consumed_fat %>
+<% consumed_salt = @daily_record.consumed_salt %>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -9,40 +12,41 @@
       <dt>カロリー</dt>
       <dd>
         <div class="progress" style="width: 100%;">
-    
-           
+          <div class="progress-bar" style="width: <%= (consumed_calories.to_f / energy_requirement) * 100 %>%;">
+            <%= consumed_calories %> / <%= @user_physical_information.metabolism %>kcal
+          </div>
           </div>
         </div>
       </dd>
       <dt>タンパク質</dt>
       <dd>
-        <div class="progress" style="width: 100%;">
-          <div class="progress-bar" style="width: 50%;">
-            50
+        <div class="progress mt-3" style="width: 100%;">
+          <div class="progress-bar" role="progressbar" style="width: <%= (consumed_protein.to_f / @user_physical_information.protein) * 100 %>%;">
+            <%= consumed_protein %> / <%= @user_physical_information.protein %>g
           </div>
         </div>
       </dd>
       <dt>炭水化物</dt>
       <dd>
-        <div class="progress" style="width: 100%;">
-          <div class="progress-bar" style="width: 70%;">
-            70
+        <div class="progress mt-3">
+          <div class="progress-bar" role="progressbar" style="width: <%= (consumed_carbo.to_f /  @user_physical_information.carbo) * 100 %>%;">
+            <%= consumed_carbo %> / <%= @user_physical_information.carbo %>g
           </div>
         </div>
       </dd>
       <dt>脂質</dt>
       <dd>
-        <div class="progress" style="width: 100%;">
-          <div class="progress-bar" style="width: 30%;">
-            30
+        <div class="progress mt-3">
+          <div class="progress-bar" role="progressbar" style="width: <%= (consumed_fat.to_f / @user_physical_information.fat) * 100 %>%;">
+            <%= consumed_fat %> / <%= @user_physical_information.fat %>g
           </div>
         </div>
       </dd>
-      <dt>脂質</dt>
+      <dt>塩分</dt>
       <dd>
-        <div class="progress" style="width: 100%;">
-          <div class="progress-bar" style="width: 30%;">
-            30
+        <div class="progress mt-3">
+          <div class="progress-bar" role="progressbar" style="width: <%= (consumed_salt.to_f / @user_physical_information.salt) * 100 %>%;">
+            <%= consumed_salt %> / <%= @user_physical_information.salt %>g
           </div>
         </div>
       </dd>

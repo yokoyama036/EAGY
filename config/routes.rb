@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :daily_records do
     collection do
       get :about
+      get :search
     end
   end
   resources :daily_record_items, only: [:destroy, :update]
@@ -13,5 +14,4 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :users, only: :show
-  
 end

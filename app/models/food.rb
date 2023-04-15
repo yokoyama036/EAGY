@@ -4,6 +4,10 @@ class Food < ApplicationRecord
   has_many :myset_foods
   has_one_attached :image
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name]
+  end
+
   def total_calorie(amount)
     calorie * amount / 100
   end
@@ -24,4 +28,8 @@ class Food < ApplicationRecord
     salt * amount / 100
   end
 
+  def search
+    @q = Food.ransack(params[:q])
+    @foods = @q.result
+  end
 end

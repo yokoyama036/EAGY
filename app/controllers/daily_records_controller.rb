@@ -10,6 +10,12 @@ class DailyRecordsController < ApplicationController
     @foods = Food.all
     @mysets = Myset.all
     @daily_record.daily_record_items.build
+    @q = Food.ransack(params[:q])
+    @foods = @q.result(distinct: true)
+    # @q_food = Food.ransack(params[:q_food])
+    # @foods = @q_food.result(distinct: true)
+    # @q_myset = Myset.ransack(params[:q_myset])
+    # @mysets = @q_myset.result(distinct: true)
   end
 
   def create
@@ -68,7 +74,10 @@ class DailyRecordsController < ApplicationController
 
 
   def about
+  end
 
+  def search
+  
   end
   
   private

@@ -71,6 +71,7 @@ input[name="tab_item"] {
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
+      <%= render 'search', q: @q, url: new_daily_record_path %>
         <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
           <table>
             <thead>
@@ -167,7 +168,7 @@ input[name="tab_item"] {
                       </div>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editMysetNameModal-<%= f.id %>">変更</button>
+                      <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editMysetNameModal-<%= f.id %>">Myset名変更</button>
                     </td>
                     <td><%= link_to "詳細", myset_path(f.id), class:'btn btn-sm btn-success' %></td>
                     <td><%= link_to "削除", myset_path(f.id), method: :delete, data: { confirm: "このMysetを削除してもよろしいですか？" }, class: "btn btn-danger" %></td>
