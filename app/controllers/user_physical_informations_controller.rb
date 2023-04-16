@@ -14,7 +14,7 @@ class UserPhysicalInformationsController < ApplicationController
   end
 
   def show
-    @user_info = UserPhysicalInformation.find(current_user.id)
+    @user_info = current_user.user_physical_information
   end
 
   def edit

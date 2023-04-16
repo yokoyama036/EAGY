@@ -11,6 +11,8 @@
     <%= favicon_link_tag('EAGY_logo') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'custom_foods', 'data-turbolinks-track': 'reload' %>
+
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
@@ -39,6 +41,16 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" data-method="delete" href="/users/sign_out">Logout</a>
+            </li>
+          <% else %>
+            <li>
+              <a class="nav-link" data-method="post" href="/users/guest_sign_in">Guest Login</a>
+            </li>
+            <li>
+              <a class="nav-link" data-method="post" href="/users/sign_in">Login</a>
+            </li>
+            <li>
+              <a class="nav-link" data-method="get" href="/users/sign_up">Signup</a>
             </li>
           <% end %>
         </ul>

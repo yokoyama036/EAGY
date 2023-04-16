@@ -4,13 +4,6 @@
     <%= form.text_field :name, class: 'form-control', required: true, id: 'custom_food_name' %>
   </div>
   <%= link_to 'AIで栄養素を取得', '#', class: 'btn btn-secondary', id: 'fetch-nutrient-data' %>
-  <div id="loader-bg" class="is-hide">
-    <div id="loader" class="is-hide">
-        <p>
-          <div class="ball-pulse"><div></div><div></div><div></div></div>
-        </p>
-    </div>
-</div>
   <div class="form-group">
     <%= form.label :calorie %>
     <%= form.number_field :calorie, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_calorie' %>
