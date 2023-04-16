@@ -23,6 +23,8 @@ class DailyRecord < ApplicationRecord
         sum + item.food.calorie * amount / 100
       elsif item.myset.present?
         sum + item.myset.total_calorie(amount)
+      elsif item.custom_food.present?
+        sum + item.custom_food.calorie * amount / 100
       else
         sum
       end
@@ -44,6 +46,8 @@ class DailyRecord < ApplicationRecord
         sum + item.food.protein * amount / 100
       elsif item.myset.present?
         sum + item.myset.total_protein(amount)
+      elsif item.custom_food.present?
+        sum + item.custom_food.protein * amount / 100
       else
         sum
       end
@@ -59,6 +63,8 @@ class DailyRecord < ApplicationRecord
         sum + item.food.carbo * amount / 100
       elsif item.myset.present?
         sum + item.myset.total_carbo(amount)
+      elsif item.custom_food.present?
+        sum + item.custom_food.carbo * amount / 100
       else
         sum
       end
@@ -74,6 +80,8 @@ class DailyRecord < ApplicationRecord
         sum + item.food.fat * amount / 100
       elsif item.myset.present?
         sum + item.myset.total_fat(amount)
+      elsif item.custom_food.present?
+        sum + item.custom_food.fat * amount / 100
       else
         sum
       end
@@ -89,6 +97,8 @@ class DailyRecord < ApplicationRecord
         sum + item.food.salt * amount / 100
       elsif item.myset.present?
         sum + item.myset.total_salt(amount)
+      elsif item.custom_food.present?
+        sum + item.custom_food.salt * amount / 100
       else
         sum
       end

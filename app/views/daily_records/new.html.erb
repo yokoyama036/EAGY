@@ -154,51 +154,51 @@
   <div class="tab_content" id="food_content">
     <div class="tab_content_description">
       <p class="c-txtsp"></p>
-       <%= link_to "食材を追加する", new_custom_food_path, class: "btn btn-primary mb-3" %>
-        <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
-          <table>
-            <thead>
-              <tr>
-                <th>食材選択</th>
-                <th>食品名</th>
-                <th>カロリー</th>
-                <th>タンパク質</th>
-                <th>炭水化物</th>
-                <th>脂質</th>
-                <th>塩分</th>
-                <th>単位数量</th>
-                <th>食事分類</th>
-              </tr>
-            </thead>
-            <div class="field">
-              <%= form.label :date %>
-              <%= form.date_field :date, value: @selected_date %>
-            </div>
-            <tbody>
-              <% @custom_foods.each do |f| %>
-                <%= form.fields_for :daily_record_items do |item_form| %>
-                  <tr>
-                    <td><%= item_form.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
-                    <td><%= f.name %></td>
-                    <td><%= f.calorie %></td>
-                    <td><%= f.protein %></td>
-                    <td><%= f.carbo %></td>
-                    <td><%= f.fat %></td>
-                    <td><%= f.salt %></td>
-                    <td><%= f.unit %></td>
-                    <td>
-                      <div class="field">
-                        <%= item_form.select "food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
-                      </div>
-                    </td>
-                  </tr>
-                <% end %>
+      <%= link_to "食材を追加する", new_custom_food_path, class: "btn btn-primary mb-3" %>
+      <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
+        <table>
+          <thead>
+            <tr>
+              <th>食材選択</th>
+              <th>食品名</th>
+              <th>カロリー</th>
+              <th>タンパク質</th>
+              <th>炭水化物</th>
+              <th>脂質</th>
+              <th>塩分</th>
+              <th>単位数量</th>
+              <th>食事分類</th>
+            </tr>
+          </thead>
+          <div class="field">
+            <%= form.label :date %>
+            <%= form.date_field :date, value: @selected_date %>
+          </div>
+          <tbody>
+            <% @custom_foods.each do |f| %>
+              <%= form.fields_for :daily_record_items do |item_form| %>
+                <tr>
+                  <td><%= item_form.check_box "custom_food_ids[]", { multiple: true }, f.id, nil %></td>
+                  <td><%= f.name %></td>
+                  <td><%= f.calorie %></td>
+                  <td><%= f.protein %></td>
+                  <td><%= f.carbo %></td>
+                  <td><%= f.fat %></td>
+                  <td><%= f.salt %></td>
+                  <td><%= f.unit %></td>
+                  <td>
+                    <div class="field">
+                      <%= item_form.select "custom_food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
+                    </div>
+                  </td>
+                </tr>
               <% end %>
-            </tbody>
-          </table>
-          <br>
-          <%= form.submit %>
-        <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <%= form.submit %>
+      <% end %>
     </div>
   </div>
 </div>

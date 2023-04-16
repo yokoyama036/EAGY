@@ -35,13 +35,19 @@ class DailyRecordsController < ApplicationController
       params[:daily_record][:daily_record_items][:myset_selections].each do |myset_id, meal_timing|
         next if meal_timing.blank?
         @daily_record.daily_record_items.create!(myset_id: myset_id, meal_timing: meal_timing)
-        # myset_idに対応する処理をここに実装
+      end
+    end
+    if params[:daily_record][:daily_record_items][:custom_food_selections].present?
+      params[:daily_record][:daily_record_items][:custom_food_selections].each do |custom_food_id, meal_timing|
+        next if meal_timing.blank?
+        @daily_record.daily_record_items.create!(custom_food_id: custom_food_id, meal_timing: meal_timing)
       end
     end
       redirect_to @daily_record, notice: '記録しました。'
     else
       @foods = Food.all
       @mysets = Myset.all
+      @custom_foods = CustomFood.all
       render :new
     end
   end
