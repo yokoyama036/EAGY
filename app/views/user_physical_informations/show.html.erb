@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>User Show</title>
-</head>
 <body>
 
 <div class="container mt-5">
-  <h2 class="mb-4">User Show</h2>
   <div class="row">
     <div class="col-md-4">
       <div class="text-center">
       <% if @user_info.image.attached? %>
         <%= image_tag("user_icon.png", alt: "User Icon", class: "user-icon") %>
       <% else %>
-        <%= image_tag "default.png", size: "150x150" %>
+        <%= image_tag "default.png", size: "300x300" %>
       <% end %>
       </div>
       <div class="mt-3">
-        <%= button_tag "Add Image", type: "button", class: "btn btn-primary btn-block" %>
       </div>
     </div>
     <div class="col-md-8">
@@ -35,9 +25,25 @@
             <th>Metabolism:</th>
             <td><%= @user_info.metabolism %> kcal/day</td>
           </tr>
-          <!-- 他のユーザー情報がある場合、ここに追加 -->
+          <tr>
+            <th>Protein:</th>
+            <td><%= @user_info.protein %> g/day</td>
+          </tr>
+          <tr>
+            <th>Carbohydrates:</th>
+            <td><%= @user_info.carbo %> g/day</td>
+          </tr>
+          <tr>
+            <th>Fat:</th>
+            <td><%= @user_info.fat %> g/day</td>
+          </tr>
+          <tr>
+            <th>Salt:</th>
+            <td><%= @user_info.salt %> g/day</td>
+          </tr>
         </tbody>
       </table>
+      <%= link_to "編集", edit_user_physical_information_path(@user_info), class: "btn btn-primary btn-block" %>
     </div>
   </div>
 </div>

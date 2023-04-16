@@ -16,16 +16,22 @@
 
 header {
   width: 100%;
-  height:50px;
+  height:80px;
   position: sticky;
   top: 0;
-  display: inline;
   text-align: center;
+  background-color: #0b0b0b;
 }
 .header li {
-  line-height: 30px;
+  line-height: 40px;
+  font-size: 25px;
   list-style: none;
+}
+a.nav-link {
   text-align: right
+}
+.navbar-brand {
+  font-size: 35px;
 }
 html {
   position: relative;
@@ -33,13 +39,14 @@ html {
 }
 body {
   margin-bottom: 60px;
+  padding-bottom: 60px;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 60px;
-  background-color: #312d2a;
+  background-color: #0b0b0b;
 }
 .container {
   width: auto;
@@ -72,8 +79,86 @@ footer a {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 25px;
 }
 
 .calendar-heading a {
   margin: 0 10px;
+}
+.record-meal-button {
+  text-align: center; 
+}
+.about-background {
+  background-image: url('https://images.unsplash.com/photo-1464454709131-ffd692591ee5');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  padding: 70px;
+}
+
+.about-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  border-radius: 10px;
+}
+.logo {
+  height: 50px; 
+}
+.tabs {
+  margin-top: 50px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 800px;
+  margin: 0 auto;}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/4);
+  height: 50px;
+  border-bottom: 3px solid #f2ab07;
+  background-color: #d9d9d9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+.tab_content.td {
+  height: 30px;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#myset:checked ~ #myset_content,
+#history:checked ~ #history_content,
+#food:checked ~ #food_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #e67811;
+  color: #fff;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_10_070441) do
+ActiveRecord::Schema.define(version: 2023_04_16_023219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 2023_04_10_070441) do
 
   create_table "custom_foods", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "calorie", null: false
-    t.integer "protein", null: false
-    t.integer "carbo", null: false
-    t.integer "fat", null: false
-    t.integer "salt", null: false
+    t.float "calorie", null: false
+    t.float "protein", null: false
+    t.float "carbo", null: false
+    t.float "fat", null: false
+    t.float "salt", null: false
     t.string "unit", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2023_04_10_070441) do
     t.bigint "food_id"
     t.bigint "myset_id"
     t.bigint "custom_food_id"
-    t.integer "amount"
+    t.integer "amount", default: 100
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "meal_timing"
@@ -81,11 +81,11 @@ ActiveRecord::Schema.define(version: 2023_04_10_070441) do
 
   create_table "foods", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "calorie", null: false
-    t.integer "protein", null: false
-    t.integer "carbo", null: false
-    t.integer "fat", null: false
-    t.integer "salt", null: false
+    t.float "calorie", null: false
+    t.float "protein", null: false
+    t.float "carbo", null: false
+    t.float "fat", null: false
+    t.float "salt", null: false
     t.string "unit", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2023_04_10_070441) do
   create_table "myset_foods", force: :cascade do |t|
     t.bigint "myset_id", null: false
     t.bigint "food_id"
-    t.bigint "custom_id"
+    t.bigint "custom_food_id"
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -113,6 +113,10 @@ ActiveRecord::Schema.define(version: 2023_04_10_070441) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "protein"
+    t.float "carbo"
+    t.float "fat"
+    t.float "salt"
   end
 
   create_table "users", force: :cascade do |t|

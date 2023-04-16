@@ -5,23 +5,28 @@ class Myset < ApplicationRecord
   has_one_attached :image
   accepts_nested_attributes_for :myset_foods, allow_destroy: true
 
-  def total_calorie
-    myset_foods.includes(:food).sum { |myset_food| myset_food.food.calorie }
+  def total_calorie(amount)
+    myset_foods.includes(:food).sum { |myset_food| myset_food.food.total_calorie(myset_food.amount * amount / 100) }
   end
 
-  def total_protein
-    foods.sum(&:protein)
+  def total_protein(amount)
+    myset_foods.includes(:food).sum { |myset_food| myset_food.food.total_protein(myset_food.amount * amount / 100) }
   end
 
-  def total_carbo
-    foods.sum(&:carbo)
+  def total_carbo(amount)
+    myset_foods.includes(:food).sum { |myset_food| myset_food.food.total_carbo(myset_food.amount * amount / 100) }
   end
 
-  def total_fat
-    foods.sum(&:fat)
+  def total_fat(amount)
+    myset_foods.includes(:food).sum { |myset_food| myset_food.food.total_fat(myset_food.amount * amount / 100) }
   end
 
-  def total_salt
-    foods.sum(&:salt)
+  def total_salt(amount)
+    myset_foods.includes(:food).sum { |myset_food| myset_food.food.total_salt(myset_food.amount * amount / 100) }
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name]
+  end
+
 end

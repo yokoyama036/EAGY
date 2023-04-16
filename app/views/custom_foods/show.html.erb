@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- ここにカスタムフードの画像を表示 -->
+      <img src="https://via.placeholder.com/300x300" alt="カスタムフード画像" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <h2><%= @custom_food.name %></h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>カロリー</th>
+            <th>タンパク質</th>
+            <th>炭水化物</th>
+            <th>脂質</th>
+            <th>塩分</th>
+            <th>単位数量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @custom_food.calorie %></td>
+            <td><%= @custom_food.protein %></td>
+            <td><%= @custom_food.carbo %></td>
+            <td><%= @custom_food.fat %></td>
+            <td><%= @custom_food.salt %></td>
+            <td><%= @custom_food.unit %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to "編集", edit_custom_food_path(@custom_food), class:'btn btn-sm btn-success' %>
+      <%= link_to "削除", custom_food_path(@custom_food), method: :delete, data: { confirm: "このカスタムフードを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

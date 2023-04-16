@@ -16,23 +16,76 @@
       <tr>
         <% if item.food.present? %>
           <td><%= item.food.name %></td>
-          <td><%= item.food.calorie %></td>
-          <td><%= item.food.protein %></td>
-          <td><%= item.food.carbo %></td>
-          <td><%= item.food.fat %></td>
-          <td><%= item.food.salt %></td>
+          <td><%= item.food.total_calorie(item.amount) %></td>
+          <td><%= item.food.total_protein(item.amount) %></td>
+          <td><%= item.food.total_carbo(item.amount) %></td>
+          <td><%= item.food.total_fat(item.amount) %></td>
+          <td><%= item.food.total_salt(item.amount) %></td>
           <td><%= item.food.unit %></td>
+          <td><%= item.amount if item.amount.present? %></td>
+          <td>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editFoodAmountModal-<%= item.id %>">分量変更</button>
+          </td>
+          <td>
+            <%= link_to '削除', daily_record_item_path(item), method: :delete, data: { confirm: 'この項目を削除してもよろしいですか？' }, class: 'btn btn-outline-danger' %>
+          </td>
         <% elsif item.myset.present? %>
           <td><%= item.myset.name %></td>
-          <td><%= item.myset.total_calorie %></td>
-          <td><%= item.myset.total_protein %></td>
-          <td><%= item.myset.total_carbo %></td>
-          <td><%= item.myset.total_fat %></td>
-          <td><%= item.myset.total_salt %></td>
+          <td><%= item.myset.total_calorie(item.amount) %></td>
+          <td><%= item.myset.total_protein(item.amount) %></td>
+          <td><%= item.myset.total_carbo(item.amount) %></td>
+          <td><%= item.myset.total_fat(item.amount) %></td>
+          <td><%= item.myset.total_salt(item.amount) %></td>
           <td>1</td> <!-- 単位数量はMysetの場合1になります -->
+          <td><%= item.amount if item.amount.present? %></td>
+          <td>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editFoodAmountModal-<%= item.id %>">分量変更</button>
+          </td>
+          <td>
+            <%= link_to '削除', daily_record_item_path(item), method: :delete, data: { confirm: 'この項目を削除してもよろしいですか？' }, class: 'btn btn-outline-danger' %>
+          </td>
+        <% elsif item.custom_food.present? %>
+          <td><%= item.custom_food.name %></td>
+          <td><%= item.custom_food.calorie * item.amount / 100 %></td>
+          <td><%= item.custom_food.protein * item.amount / 100 %></td>
+          <td><%= item.custom_food.carbo * item.amount / 100 %></td>
+          <td><%= item.custom_food.fat * item.amount / 100 %></td>
+          <td><%= item.custom_food.salt * item.amount / 100 %></td>
+          <td><%= item.custom_food.unit %></td>
+          <td><%= item.amount if item.amount.present? %></td>
+          <td>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editFoodAmountModal-<%= item.id %>">分量変更</button>
+          </td>
+          <td>
+            <%= link_to '削除', daily_record_item_path(item), method: :delete, data: { confirm: 'この項目を削除してもよろしいですか？' }, class: 'btn btn-outline-danger' %>
+          </td>
         <% end %>
-        <td><%= item.amount %></td> 
       </tr>
     <% end %>
   </tbody>
 </table>
+<% @daily_record_items.each do |item| %>
+  <div class="modal fade" id="editFoodAmountModal-<%= item.id %>" tabindex="-1" aria-labelledby="editFoodAmountLabel-<%= item.id %>" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editFoodAmountModal-<%= item.id %>">分量を編集</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_with(url: daily_record_item_path(item), method: :put, local: true) do |form| %>
+          <div class="modal-body">
+            <%= form.label :amount, "分量 (%)" %>
+            <%= form.number_field :amount, value: item.amount || 100, min: 0, step: 1, class: 'form-control' %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            <%= form.submit "更新", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

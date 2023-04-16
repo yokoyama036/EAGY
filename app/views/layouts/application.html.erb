@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <style>
- @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
 </style>
 <html>
   <head>
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag('EAGY_logo') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,27 +16,31 @@
   <body>
   <header class = "header">
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
-      <a class="navbar-brand" href="#">EAGY</a>
+    <nav class="navbar navbar-expand-sm navbar-dark mb-3">
+      <h1>
+        <%= link_to "/daily_records", class: "logo-link" do %>
+          <%= image_tag "EAGY.png", alt: "ロゴ", class: "logo" %>
+        <% end %>
+      </h1>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
-        <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="/daily_records">Top<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/daily_records/about">About</a>
-              </li>
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <a class="nav-link" href="/user_physical_informations/:id">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-method="delete" href="/users/sign_out">Logout</a>
-              </li>
-            <% end %>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/daily_records">Top<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_records/about">About</a>
+            </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link" href="/user_physical_informations/:id">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-method="delete" href="/users/sign_out">Logout</a>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
@@ -45,7 +49,7 @@
   <footer class="footer">
     <div class="container text-center">
       <%= link_to daily_records_path ,method: :get do %>
-      <i class="bi bi-calendar2-date"></i>
+      <i class="bi bi-calendar3"></i>
       <% end %>
       <%= link_to new_daily_record_path ,method: :get do %>
       <i class="bi bi-clipboard-plus"></i>

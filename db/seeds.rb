@@ -7,52 +7,62 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Food.create!(
-  id:2,
-  name: "オートミール",
-  calorie: 380,
-  protein: 13.7,
-  carbo: 69.1,
-  fat: 5.7,
+  id:13,
+  name: "ご飯",
+  calorie: 168,
+  protein: 2.5,
+  carbo: 37.1,
+  fat: 0.3,
   salt: 0,
   unit: "100g" 
 )
 Food.create!(
-  id:3,
-  name: "調整豆乳",
-  calorie: 64,
-  protein: 3.2,
-  carbo: 4.8,
-  fat: 3.6,
+  id:8,
+  name: "牛もも肉",
+  calorie: 182,
+  protein: 21.2,
+  carbo: 0.5,
+  fat: 9.6,
   salt: 0.1,
   unit: "100g" 
 )
 Food.create!(
-  id:4,
-  name: "バナナ",
-  calorie: 86,
-  protein: 1.1,
-  carbo: 22.5,
-  fat: 0.2,
-  salt: 0,
-  unit: "100g" 
-)
-Food.create!(
-  id:5,
-  name: "はちみつ",
-  calorie: 62,
-  protein: 0.04,
-  carbo: 16.74,
+  id:9,
+  name: "醤油",
+  calorie: 13,
+  protein: 1.4,
+  carbo: 1.82,
   fat: 0,
-  salt: 0,
-  unit: "大さじ1(21g)" 
+  salt: 2.61,
+  unit: "大さじ1(18g)" 
 )
 Food.create!(
-  id:6,
-  name: "ココア",
-  calorie: 16,
-  protein: 1.11,
-  carbo: 2.54,
-  fat: 1.3,
+  id:10,
+  name: "マヨネーズ",
+  calorie: 84,
+  protein: 0.18,
+  carbo: 0.54,
+  fat: 9.04,
+  salt: 0.2,
+  unit: "大さじ1(12g)" 
+)
+Food.create!(
+  id:11,
+  name: "納豆",
+  calorie: 100,
+  protein: 8.25,
+  carbo: 6.05,
+  fat: 5.0,
   salt: 0,
-  unit: "大さじ1(6g)" 
+  unit: "1パック(50g)" 
+)
+Food.create!(
+  id:12,
+  name: "LYFT WPIアロエヨーグルト",
+  calorie: 114,
+  protein: 25.2,
+  carbo: 2.6,
+  fat: 0.4,
+  salt: 0.05,
+  unit: "30g" 
 )

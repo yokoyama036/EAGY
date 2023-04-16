@@ -7,6 +7,8 @@
 - cancancan
 # カリキュラム外の技術
 - Active Storage
+- SimpleCalendar
+- ransack
 - chat GPT API
 # 実行手順
 ```

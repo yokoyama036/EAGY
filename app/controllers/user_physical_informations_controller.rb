@@ -18,15 +18,24 @@ class UserPhysicalInformationsController < ApplicationController
   end
 
   def edit
+    @user_info = UserPhysicalInformation.find_by(user_id: current_user.id)
   end
 
   def update
+    @user_info = UserPhysicalInformation.find_by(user_id: current_user.id)
+    if @user_info.update(user_info_params)
+      flash[:notice] = 'ユーザー情報が更新されました。'
+      redirect_to user_physical_information_path(@user_info)
+    else
+      flash.now[:alert] = 'ユーザー情報の更新に失敗しました。'
+      render :edit
+    end
   end
 
   private
 
   def user_info_params
-    params.require(:user_physical_information).permit(:name, :metabolism, :user_id, :image )
+    params.require(:user_physical_information).permit(:name, :metabolism, :user_id, :image, :protein, :carbo, :fat, :salt )
   end
 
 end

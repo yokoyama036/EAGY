@@ -16,6 +16,7 @@ gem 'rails_admin'
 gem 'cancan'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem "simple_calendar", "~> 2.0"
+gem 'ransack'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
