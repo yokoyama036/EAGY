@@ -1,5 +1,6 @@
 class DailyRecordsController < ApplicationController
-
+  before_action :check_user_physical_information
+  
   def index
     @daily_records = DailyRecord.all
   end
@@ -103,5 +104,11 @@ class DailyRecordsController < ApplicationController
         :_destroy
       ]
       )
+  end
+
+  def check_user_physical_information
+    if user_signed_in? && current_user.user_physical_information.nil?
+      redirect_to new_user_physical_information_path
+    end
   end
 end

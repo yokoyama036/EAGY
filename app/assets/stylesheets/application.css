@@ -115,7 +115,7 @@ footer a {
 
 /*タブのスタイル*/
 .tab_item {
-  width: calc(100%/4);
+  width: calc(100%/3);
   height: 50px;
   border-bottom: 3px solid #f2ab07;
   background-color: #d9d9d9;
@@ -162,3 +162,98 @@ input[name="tab_item"] {
   background-color: #e67811;
   color: #fff;
 }
+.is-hide {
+  display: none;
+}
+/* ローディング画面をフェードアウト */
+.fadeout-bg {
+  transition-property: opacity;
+  transition-delay: .9s;
+  transition-duration: .8s;
+  opacity: 0;
+  pointer-events: none;
+}
+/* ローダーをフェードアウト */
+.fadeout-loader {
+  transition-property: opacity;
+  transition-delay: .9s;
+  transition-duration: .3s;
+  opacity: 0;
+  pointer-events: none;
+}
+/* ローディング画面 */
+#loader-bg {
+  background: #ffffff;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+#loader {
+  height: 120px;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: -60px;
+  position: fixed;
+  top: 50%;
+  width: 120px;
+}
+#loader p {
+  color: #454545;
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: center;
+}
+#loader p img {
+  display: inline-block;
+}
+@-webkit-keyframes scale {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1; }
+  45% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+    opacity: 0.7; }
+  80% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1; } }
+@keyframes scale {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1; }
+  45% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+    opacity: 0.7; }
+  80% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1; } }
+
+.ball-pulse > div:nth-child(1) {
+  -webkit-animation: scale 0.75s -0.24s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: scale 0.75s -0.24s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.ball-pulse > div:nth-child(2) {
+  -webkit-animation: scale 0.75s -0.12s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: scale 0.75s -0.12s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.ball-pulse > div:nth-child(3) {
+  -webkit-animation: scale 0.75s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: scale 0.75s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.ball-pulse > div {
+  background-color: MediumBlue;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin: 2px;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  display: inline-block; }
