@@ -1,63 +1,4 @@
-<style>
-/*タブ切り替え全体のスタイル*/
-.tabs {
-  margin-top: 50px;
-  padding-bottom: 40px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 800px;
-  margin: 0 auto;}
 
-/*タブのスタイル*/
-.tab_item {
-  width: calc(100%/4);
-  height: 50px;
-  border-bottom: 3px solid #5ab4bd;
-  background-color: #d9d9d9;
-  line-height: 50px;
-  font-size: 16px;
-  text-align: center;
-  color: #565656;
-  display: block;
-  float: left;
-  text-align: center;
-  font-weight: bold;
-  transition: all 0.2s ease;
-}
-.tab_item:hover {
-  opacity: 0.75;
-}
-
-/*ラジオボタンを全て消す*/
-input[name="tab_item"] {
-  display: none;
-}
-
-/*タブ切り替えの中身のスタイル*/
-.tab_content {
-  display: none;
-  padding: 40px 40px 0;
-  clear: both;
-  overflow: hidden;
-}
-.tab_content.td {
-  height: 30px;
-}
-
-/*選択されているタブのコンテンツのみを表示*/
-#all:checked ~ #all_content,
-#myset:checked ~ #myset_content,
-#history:checked ~ #history_content,
-#food:checked ~ #food_content {
-  display: block;
-}
-
-/*選択されているタブのスタイルを変える*/
-.tabs input:checked + .tab_item {
-  background-color: #5ab4bd;
-  color: #fff;
-}
-</style>
 <%= notice %>
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
@@ -212,7 +153,52 @@ input[name="tab_item"] {
   </div>
   <div class="tab_content" id="food_content">
     <div class="tab_content_description">
-      <p class="c-txtsp">食材追加アクションを追加</p>
+      <p class="c-txtsp"></p>
+       <%= link_to "食材を追加する", new_custom_food_path, class: "btn btn-primary mb-3" %>
+        <%= form_with(scope: :daily_record, url: daily_records_path, method: :post, local: true) do |form| %>
+          <table>
+            <thead>
+              <tr>
+                <th>食材選択</th>
+                <th>食品名</th>
+                <th>カロリー</th>
+                <th>タンパク質</th>
+                <th>炭水化物</th>
+                <th>脂質</th>
+                <th>塩分</th>
+                <th>単位数量</th>
+                <th>食事分類</th>
+              </tr>
+            </thead>
+            <div class="field">
+              <%= form.label :date %>
+              <%= form.date_field :date, value: @selected_date %>
+            </div>
+            <tbody>
+              <% @custom_foods.each do |f| %>
+                <%= form.fields_for :daily_record_items do |item_form| %>
+                  <tr>
+                    <td><%= item_form.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
+                    <td><%= f.name %></td>
+                    <td><%= f.calorie %></td>
+                    <td><%= f.protein %></td>
+                    <td><%= f.carbo %></td>
+                    <td><%= f.fat %></td>
+                    <td><%= f.salt %></td>
+                    <td><%= f.unit %></td>
+                    <td>
+                      <div class="field">
+                        <%= item_form.select "food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+          <%= form.submit %>
+        <% end %>
     </div>
   </div>
 </div>

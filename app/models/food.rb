@@ -4,6 +4,12 @@ class Food < ApplicationRecord
   has_many :myset_foods
   has_one_attached :image
 
+  validates :calorie, numericality: true
+  validates :protein, numericality: true
+  validates :carbo, numericality: true
+  validates :fat, numericality: true
+  validates :salt, numericality: true
+
   def self.ransackable_attributes(auth_object = nil)
     %w[name]
   end
