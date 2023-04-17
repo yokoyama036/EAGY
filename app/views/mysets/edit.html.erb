@@ -5,12 +5,12 @@
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 700px;
+  width: 900px;
   margin: 0 auto;}
 
 /*タブのスタイル*/
 .tab_item {
-  width: calc(100%/3);
+  width: calc(100%/2);
   height: 50px;
   border-bottom: 3px solid #5ab4bd;
   background-color: #d9d9d9;
@@ -54,18 +54,20 @@ input[name="tab_item"] {
   background-color: #5ab4bd;
   color: #fff;
 }
+h3{
+  text-align: center;
+}
 </style>
-  <h1>Myset: <%= @myset.name %> に食材を追加</h1>
+  <h3>Myset: <%= @myset.name %> に食材を追加</h3>
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
   <label class="tab_item" for="all">食材検索</label>
-  <input id="history" type="radio" name="tab_item">
-  <label class="tab_item" for="history">履歴</label>
   <input id="food" type="radio" name="tab_item">
   <label class="tab_item" for="food">追加食材</label>
   <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <p class="c-txtsp">
+      <%= render 'search', q: @q, url: edit_myset_path(@myset) %>
         <%= form_with(model: @myset, url: myset_path(@myset), method: :put, local: true) do |form| %>
         <table>
           <thead>
@@ -101,19 +103,55 @@ input[name="tab_item"] {
             <% end %>
           </tbody>
         </table>
-        <%= form.submit %>
+        <%= form.submit "記録", class: "btn btn-primary" %>
       <% end %>
       </p>
     </div>
   </div>
-  <div class="tab_content" id="history_content">
-    <div class="tab_content_description">
-      <p class="c-txtsp">履歴上位10を表示</p>
-    </div>
-  </div>
   <div class="tab_content" id="food_content">
     <div class="tab_content_description">
-      <p class="c-txtsp">食材追加アクションを追加</p>
+      <p class="c-txtsp"></p>
+      <%= link_to "食材を追加する", new_custom_food_path, class: "btn btn-primary mb-3" %>
+      <%= form_with(scope: @myset, url: myset_path(@myset), method: :put, local: true) do |form| %>
+        <table>
+          <thead>
+            <tr>
+              <th>食材選択</th>
+              <th>食品名</th>
+              <th>カロリー</th>
+              <th>タンパク質</th>
+              <th>炭水化物</th>
+              <th>脂質</th>
+              <th>塩分</th>
+              <th>単位数量</th>
+              <th>食事分類</th>
+            </tr>
+          </thead>
+            <tbody>
+            <% @custom_foods.each_with_index do |f, index| %>
+              <%= form.fields_for "myset_custom_foods[#{index}]", MysetFood.new(custom_food_id: f.id) do |myset_food_form| %>
+                <tr>
+                  <td><%= myset_food_form.check_box :custom_food_id, { checked: false }, f.id, nil %></td>
+                  <td><%= f.name %></td>
+                  <td><%= f.calorie %></td>
+                  <td><%= f.protein %></td>
+                  <td><%= f.carbo %></td>
+                  <td><%= f.fat %></td>
+                  <td><%= f.salt %></td>
+                  <td><%= f.unit %></td>
+                  <td>
+                  <%= myset_food_form.number_field :amount, min: 0, step: 1, value: 100, class: 'form-control' %>
+                  </td>
+                  <td><%= link_to "詳細", custom_food_path(f.id), class:'btn btn-sm btn-success m-1' %></td>
+                  <td><%= link_to "削除", custom_food_path(f.id), method: :delete, data: { confirm: "このMysetを削除してもよろしいですか？" }, class: "btn btn-danger m-1" %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <%= form.submit "記録", class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
 header {
   width: 100%;
@@ -21,12 +22,14 @@ header {
   top: 0;
   text-align: center;
   background-color: #0b0b0b;
+  padding-left: 20px;
 }
 .header li {
-  line-height: 40px;
+  vertical-align: center;
   font-size: 25px;
   list-style: none;
 }
+
 a.nav-link {
   text-align: right
 }
@@ -88,8 +91,12 @@ footer a {
 .record-meal-button {
   text-align: center; 
 }
+.record {
+  text-align: center; 
+  font-family: 'Noto Sans JP', sans-serif;
+}
 .about-background {
-  background-image: url('https://images.unsplash.com/photo-1464454709131-ffd692591ee5');
+  background-image: url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -110,7 +117,7 @@ footer a {
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;}
 
 /*タブのスタイル*/
@@ -144,9 +151,6 @@ input[name="tab_item"] {
   padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
-}
-.tab_content.td {
-  height: 30px;
 }
 
 /*選択されているタブのコンテンツのみを表示*/

@@ -30,21 +30,27 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
+            <% if user_signed_in? %>
               <a class="nav-link" href="/daily_records">Top<span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/daily_records/about">About</a>
+            <% else %>
+              <a class="nav-link" href="/daily_records/about">Top<span class="sr-only"></span></a>
+            <% end %>
             </li>
           <% if user_signed_in? %>
             <li class="nav-item">
-              <a class="nav-link" href="/user_physical_informations/:id">Profile</a>
+              <a class="nav-link" href="/daily_records/about">About</a>
             </li>
+          <% end %>
+          <% if user_signed_in? %>
             <li class="nav-item">
               <a class="nav-link" data-method="delete" href="/users/sign_out">Logout</a>
             </li>
           <% else %>
             <li>
               <a class="nav-link" data-method="post" href="/users/guest_sign_in">Guest Login</a>
+            </li>
+            <li>
+              <a class="nav-link" data-method="post" href="/users/guest_admin_sign_in">Admin Guest</a>
             </li>
             <li>
               <a class="nav-link" data-method="post" href="/users/sign_in">Login</a>
@@ -57,6 +63,11 @@
       </div>
     </nav>
   </header>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key == 'alert' ? 'danger' : 'success' %>">
+      <%= value %>
+    </div>
+  <% end %>
     <%= yield %>
   <footer class="footer">
     <div class="container text-center">
@@ -66,7 +77,11 @@
       <%= link_to new_daily_record_path ,method: :get do %>
       <i class="bi bi-clipboard-plus"></i>
       <% end %>
-      <i class="bi bi-people-fill"></i>
+      <% if user_signed_in? && current_user.user_physical_information.present? %>
+        <%= link_to user_physical_information_path(current_user.user_physical_information.id) ,method: :get do %>
+        <i class="bi bi-people-fill"></i>
+        <% end %>
+      <% end %>
     </div>
   </footer>
   </body>

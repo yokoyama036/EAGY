@@ -11,7 +11,6 @@
   align-items: center;
 }
 </style>
-
 <div class="calendar-container">
   <%= month_calendar do |date| %>
     <%= content_tag :div, class: "day" do %>
@@ -28,6 +27,7 @@
     <% end %>
   <% end %>
 </div>
+<div class="record"><h3>記録したい日付を選択してください</h3></div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const calendarDates = document.querySelectorAll(".calendar-date");

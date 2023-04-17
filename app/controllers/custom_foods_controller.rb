@@ -1,6 +1,6 @@
 class CustomFoodsController < ApplicationController
   before_action :set_custom_food, only: [:show, :edit, :update, :destroy]
-
+  before_action :ensure_correct_user, only: [:show, :edit, :update, :destroy]
   def new
     @custom_food = CustomFood.new
 
@@ -86,4 +86,10 @@ class CustomFoodsController < ApplicationController
     @client = OpenAI::Client.new(access_token: ENV["API_KEY"])
   end
 
+  def ensure_correct_user
+    custom_food = CustomFood.find(params[:id])
+    unless custom_food.user == current_user
+      redirect_to root_path, alert: "アクセス権限がありません。"
+    end
+  end
 end
