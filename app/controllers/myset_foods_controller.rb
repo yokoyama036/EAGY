@@ -26,7 +26,7 @@ class MysetFoodsController < ApplicationController
   private
 
   def myset_params
-    params.require(:myset).permit(:name, :image, myset_foods_attributes: [:id, :amount])
+    params.require(:myset).permit(:name, :image, myset_foods_attributes: [:id, :amount, :custom_food_id])
   end
 
 end

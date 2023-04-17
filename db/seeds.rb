@@ -66,3 +66,23 @@ Food.create!(
   salt: 0.05,
   unit: "30g" 
 )
+Food.create!(
+  id:13,
+  name: "アボカド",
+  calorie: 262,
+  protein: 3.5,
+  carbo: 8.68,
+  fat: 26.18,
+  salt: 0,
+  unit: "140g(1個可食部のみ)" 
+)
+Food.create!(
+  id:14,
+  name: "牛カルビ",
+  calorie: 371,
+  protein: 14.4,
+  carbo: 0.2,
+  fat: 32.9,
+  salt: 0.1,
+  unit: "100g" 
+)

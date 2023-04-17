@@ -1,5 +1,9 @@
-
-<%= notice %>
+<style>
+  .button-spacing {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+</style>
 <div class="tabs">
   <input id="all" type="radio" name="tab_item" checked>
   <label class="tab_item" for="all">食材検索</label>
@@ -27,7 +31,7 @@
               </tr>
             </thead>
             <div class="field">
-              <%= form.label :date %>
+              <%= form.label :記録日 %>
               <%= form.date_field :date, value: @selected_date %>
             </div>
             <tbody>
@@ -53,7 +57,7 @@
             </tbody>
           </table>
           <br>
-          <%= form.submit %>
+          <%= form.submit "記録", class: "btn btn-primary" %>
         <% end %>
       </p>
     </div>
@@ -71,13 +75,12 @@
             </div>
             <div class="modal-body">
               <%= form_with(scope: :myset, url: mysets_path, local: true ) do |form| %>
-                <%= form.label :name %>
+                <%= form.label :"Myset名" %>
                 <%= form.text_field :name %>
                 <div class="modal-footer">
                   <div class="actions">
-                  <%= form.submit %>
+                  <%= form.submit "作成", class: "btn btn-primary" %>
                   </div>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                 </div>
               <% end %>
             </div>
@@ -92,7 +95,7 @@
             </tr>
           </thead>
           <div class="field">
-            <%= form.label :date %>
+            <%= form.label :記録日 %>
             <%= form.date_field :date %>
           </div>
             <tbody>
@@ -103,20 +106,20 @@
                     <td><%= f.name %></td>
                     <td>
                       <div class="field">
-                        <%= item_form.select "myset_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
+                        <%= item_form.select "myset_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary m-1' %>
                       </div>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editMysetNameModal-<%= f.id %>">Myset名変更</button>
+                      <button type="button" class="btn btn-sm btn-warning m-2" data-bs-toggle="modal" data-bs-target="#editMysetNameModal-<%= f.id %>">Myset名変更</button>
                     </td>
-                    <td><%= link_to "詳細", myset_path(f.id), class:'btn btn-sm btn-success' %></td>
-                    <td><%= link_to "削除", myset_path(f.id), method: :delete, data: { confirm: "このMysetを削除してもよろしいですか？" }, class: "btn btn-danger" %></td>
+                    <td><%= link_to "詳細", myset_path(f.id), class:'btn btn-sm btn-success m-1' %></td>
+                    <td><%= link_to "削除", myset_path(f.id), method: :delete, data: { confirm: "このMysetを削除してもよろしいですか？" }, class: "btn btn-danger m-1" %></td>
                   </tr>
                 <% end %>
               <% end %>
             </tbody>
         </table>
-        <%= form.submit %>
+        <%= form.submit "記録", class: "btn btn-primary" %>
       <% end %>
         <% @mysets.each do |f| %>
           <div class="modal fade" id="editMysetNameModal-<%= f.id %>" tabindex="-1" aria-labelledby="editMysetNameModalLabel-<%= f.id %>" aria-hidden="true">
@@ -164,7 +167,7 @@
             </tr>
           </thead>
           <div class="field">
-            <%= form.label :date %>
+            <%= form.label :記録日 %>
             <%= form.date_field :date, value: @selected_date %>
           </div>
           <tbody>
@@ -184,13 +187,15 @@
                       <%= item_form.select "custom_food_selections[#{f.id}]", DailyRecordItem.meal_timings.keys,{ :include_blank => 'カテゴリを選んでください' }, class: 'form-control btn btn-outline-primary' %>
                     </div>
                   </td>
+                  <td><%= link_to "詳細", custom_food_path(f.id), class:'btn btn-sm btn-success m-1' %></td>
+                  <td><%= link_to "削除", custom_food_path(f.id), method: :delete, data: { confirm: "このMysetを削除してもよろしいですか？" }, class: "btn btn-danger m-1" %></td>
                 </tr>
               <% end %>
             <% end %>
           </tbody>
         </table>
         <br>
-        <%= form.submit %>
+        <%= form.submit "記録", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

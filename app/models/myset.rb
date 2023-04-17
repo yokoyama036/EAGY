@@ -2,8 +2,10 @@ class Myset < ApplicationRecord
   belongs_to :user
   has_many :myset_foods, dependent: :destroy
   has_many :foods, through: :myset_foods
-  has_one_attached :image
+  has_many :custom_foods, through: :myset_foods
   accepts_nested_attributes_for :myset_foods, allow_destroy: true
+  has_one_attached :image
+
 
   def total_calorie(amount)
     myset_foods.includes(:food).sum { |myset_food| myset_food.food.total_calorie(myset_food.amount * amount / 100) }

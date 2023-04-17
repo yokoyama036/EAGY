@@ -17,11 +17,17 @@
         <tbody>
           <% @myset.myset_foods.each do |myset_food| %>
             <tr>
+            <% if myset_food.food.present? %>
               <td><%= myset_food.food.name %></td>
               <td><%= myset_food.food.unit %></td>
-              <td><%= myset_food.amount %></td>
+              <td><%= myset_food.amount if myset_food.amount.present? %></td>
+            <% elsif  myset_food.custom_food.present? %>
+              <td><%= myset_food.custom_food.name %></td>
+              <td><%= myset_food.custom_food.unit %></td>
+              <td><%= myset_food.amount if myset_food.amount.present? %></td>
             </tr>
           <% end %>
+        <% end %>
         </tbody>
       </table>
       <%= link_to "食材を追加する", edit_myset_path(@myset), class:'btn btn-sm btn-success' %></td>

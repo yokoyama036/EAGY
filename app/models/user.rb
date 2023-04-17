@@ -3,8 +3,7 @@ class User < ApplicationRecord
   has_many :custom_foods, dependent: :destroy
   has_many :mysets, dependent: :destroy
   has_one :user_physical_information
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -14,4 +13,12 @@ class User < ApplicationRecord
       user.password_confirmation = user.password
     end
   end
+
+  def self.guest_admin
+    find_or_create_by!(email: 'guest_admin@example.com') do |user|
+      user.password = user.password_confirmation = SecureRandom.urlsafe_base64
+      user.admin = true
+    end
+  end
+
 end

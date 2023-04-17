@@ -1,6 +1,6 @@
 class DailyRecordsController < ApplicationController
   before_action :check_user_physical_information
-  
+  before_action :authenticate_user!, except: [:about]
   def index
     @daily_records = DailyRecord.all
   end
@@ -14,10 +14,6 @@ class DailyRecordsController < ApplicationController
     @daily_record.daily_record_items.build
     @q = Food.ransack(params[:q])
     @foods = @q.result(distinct: true)
-    # @q_food = Food.ransack(params[:q_food])
-    # @foods = @q_food.result(distinct: true)
-    # @q_myset = Myset.ransack(params[:q_myset])
-    # @mysets = @q_myset.result(distinct: true)
   end
 
   def create
@@ -25,31 +21,46 @@ class DailyRecordsController < ApplicationController
     @daily_record.user_id = current_user.id
     #  @daily_record = DailyRecord.new(user_id: current_user.id, meal_timing: params[:daily_record][:meal_timing], date: params[:daily_record][:date], comment: params[:daily_record][:comment])
     # @daily_record = DailyRecord.new(user_id: current_user.id, date: params[:daily_record][:date], comment: params[:daily_record][:comment])
+    if @daily_record.date.blank?
+      flash[:alert] = '日付を選択してください。'
+      redirect_to new_daily_record_path
+      return
+    end
     if @daily_record.save
+      items_created = 0
       if params[:daily_record][:daily_record_items][:food_selections].present?
         params[:daily_record][:daily_record_items][:food_selections].each do |food_id, meal_timing|
-          next if meal_timing.blank?
+        next if meal_timing.blank?
           @daily_record.daily_record_items.create!(food_id: food_id, meal_timing: meal_timing)
+          items_created += 1
+        end
       end
-    end
-    if params[:daily_record][:daily_record_items][:myset_selections].present?
-      params[:daily_record][:daily_record_items][:myset_selections].each do |myset_id, meal_timing|
+      if params[:daily_record][:daily_record_items][:myset_selections].present?
+        params[:daily_record][:daily_record_items][:myset_selections].each do |myset_id, meal_timing|
         next if meal_timing.blank?
-        @daily_record.daily_record_items.create!(myset_id: myset_id, meal_timing: meal_timing)
+          @daily_record.daily_record_items.create!(myset_id: myset_id, meal_timing: meal_timing)
+          items_created += 1       
+        end
       end
-    end
-    if params[:daily_record][:daily_record_items][:custom_food_selections].present?
-      params[:daily_record][:daily_record_items][:custom_food_selections].each do |custom_food_id, meal_timing|
+      if params[:daily_record][:daily_record_items][:custom_food_selections].present?
+        params[:daily_record][:daily_record_items][:custom_food_selections].each do |custom_food_id, meal_timing|
         next if meal_timing.blank?
-        @daily_record.daily_record_items.create!(custom_food_id: custom_food_id, meal_timing: meal_timing)
+          @daily_record.daily_record_items.create!(custom_food_id: custom_food_id, meal_timing: meal_timing)
+          items_created += 1
+        end
       end
-    end
-      redirect_to @daily_record, notice: '記録しました。'
-    else
-      @foods = Food.all
-      @mysets = Myset.all
-      @custom_foods = CustomFood.all
-      render :new
+      if items_created == 0
+        flash[:alert] = '記録できませんでした。'
+        @foods = Food.all
+        @mysets = Myset.all
+        @custom_foods = CustomFood.all
+        @q = Food.ransack(params[:q])
+        @foods = @q.result(distinct: true)
+        render :new
+      else
+        redirect_to @daily_record
+        flash[:success] = '記録しました。'
+      end
     end
   end
 

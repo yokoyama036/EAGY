@@ -1,4 +1,5 @@
 class UserPhysicalInformationsController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def new
     @user_info = UserPhysicalInformation.new
@@ -7,8 +8,10 @@ class UserPhysicalInformationsController < ApplicationController
   def create
     @user_info = UserPhysicalInformation.new(user_info_params)
     if @user_info.save
-      redirect_to daily_records_path, notice: "必要エネルギー量を設定しました" 
+      redirect_to daily_records_path
+      flash.now[:success] = "必要エネルギー量を設定しました" 
     else
+      flash.now[:alert] = '必要情報が入力されていません。'
       render :new
     end
   end
@@ -35,7 +38,14 @@ class UserPhysicalInformationsController < ApplicationController
   private
 
   def user_info_params
-    params.require(:user_physical_information).permit(:name, :metabolism, :user_id, :image, :protein, :carbo, :fat, :salt )
+    params.require(:user_physical_information).permit(:name, :metabolism, :user_id, :image, :protein, :carbo, :fat, :salt, :id )
   end
 
+  def ensure_correct_user
+    user_physical_information = UserPhysicalInformation.find(params[:id])
+    @user = user_physical_information.user_id
+    unless @user == current_user.id
+      redirect_to root_path, alert: "アクセス権限がありません。"
+    end
+  end
 end

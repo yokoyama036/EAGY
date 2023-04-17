@@ -26,10 +26,17 @@
         <%= form.fields_for :myset_foods, myset_food do |f| %>
           <%= f.hidden_field :id %>
           <tr>
-            <td><%= myset_food.food.name %></td>
-            <td><%= myset_food.food.unit %></td>
-            <td><%= f.number_field :amount, class: "form-control", min: 0, step: 1 %></td>
-            <td><%= link_to "削除", myset_food_path(myset_food), method: :delete, data: { confirm: "この食材を削除してもよろしいですか？" }, class: "btn btn-danger" %></td>
+            <% if myset_food.food.present? %>
+              <td><%= myset_food.food.name %></td>
+              <td><%= myset_food.food.unit %></td>
+              <td><%= f.number_field :amount, class: "form-control", min: 0, step: 1 %></td>
+              <td><%= link_to "削除", myset_food_path(myset_food), method: :delete, data: { confirm: "この食材を削除してもよろしいですか？" }, class: "btn btn-danger" %></td>
+            <% elsif  myset_food.custom_food.present? %>
+              <td><%= myset_food.custom_food.name %></td>
+              <td><%= myset_food.custom_food.unit %></td>
+              <td><%= f.number_field :amount, class: "form-control", min: 0, step: 1 %></td>
+              <td><%= link_to "削除", myset_food_path(myset_food), method: :delete, data: { confirm: "この食材を削除してもよろしいですか？" }, class: "btn btn-danger" %></td>
+            <% end %> 
           </tr>
         <% end %>
       <% end %>
