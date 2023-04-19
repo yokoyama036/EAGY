@@ -19,6 +19,7 @@ gem "simple_calendar", "~> 2.0"
 gem 'ransack'
 gem "ruby-openai" 
 gem 'dotenv'
+gem 'aws-sdk-s3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
