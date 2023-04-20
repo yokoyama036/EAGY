@@ -1,7 +1,7 @@
 class Food < ApplicationRecord
-  has_many :daily_record_items
+  has_many :daily_record_items, dependent: :destroy
   has_many :daily_records, through: :daily_record_items
-  has_many :myset_foods
+  has_many :myset_foods, dependent: :destroy
 
 
   validates :calorie, numericality: true
@@ -12,6 +12,10 @@ class Food < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name]
+  end
+  def search
+    @q = Food.ransack(params[:q])
+    @foods = @q.result
   end
 
   def total_calorie(amount)
@@ -34,8 +38,4 @@ class Food < ApplicationRecord
     salt * amount / 100
   end
 
-  def search
-    @q = Food.ransack(params[:q])
-    @foods = @q.result
-  end
 end

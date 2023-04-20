@@ -6,7 +6,7 @@ ruby '3.0.1'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
-gem 'sass-rails', '>= 6'
+gem 'sass-rails', '~> 5.0', '>= 5.0.7'
 gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
@@ -32,7 +32,11 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot_rails'
+  gem 'rexml'
 end
+
 
 group :development do
   gem 'web-console', '>= 4.1.0'
@@ -43,8 +47,11 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
   gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "dockerfile-rails", ">= 1.2", :group => :development
+
+gem "redis", "~> 5.0"

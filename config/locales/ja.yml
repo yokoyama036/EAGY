@@ -203,3 +203,8 @@ ja:
     failure:
       user:
         invalid: "メールアドレスまたはパスワードが正しくありません。"
+        unauthenticated: "認証されていません"
+    registrations:
+      user:
+        signed_up: "アカウント登録が完了しました。"
+       

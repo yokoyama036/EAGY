@@ -3,7 +3,6 @@ class CustomFoodsController < ApplicationController
   before_action :ensure_correct_user, only: [:show, :edit, :update, :destroy]
   def new
     @custom_food = CustomFood.new
-
   end
 
   def create
@@ -11,7 +10,8 @@ class CustomFoodsController < ApplicationController
     @custom_food.user_id = current_user.id
     prompt ="以下の食品のカロリー、タンパク質、炭水化物、脂質、塩分を次の形で出力して欲しい。カロリー: タンパク質: 炭水化物: 脂質: 塩分: "
     if @custom_food.save
-      redirect_to @custom_food, notice: 'Custom food was successfully created.'
+      redirect_to @custom_food
+      flash[:notice] = '追加食材を登録しました'
     else
       render :new
     end
@@ -22,7 +22,8 @@ class CustomFoodsController < ApplicationController
 
   def update
     if @custom_food.update(custom_food_params)
-      redirect_to @custom_food, notice: 'Custom food was successfully updated.'
+      redirect_to @custom_food
+      flash[:notice] = '追加食材情報を更新しました'
     else
       render :edit
     end
@@ -30,7 +31,8 @@ class CustomFoodsController < ApplicationController
 
   def destroy
     @custom_food.destroy
-    redirect_to custom_foods_url, notice: 'Custom food was successfully destroyed.'
+    redirect_to new_daily_record_path
+    flash[:notice] = '追加食材を削除しました。'
   end
 
   def show

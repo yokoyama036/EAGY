@@ -19,5 +19,6 @@
   },
   "resolutions": {
     "rails_admin/@fortawesome/fontawesome-free": "^5.15.0"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
