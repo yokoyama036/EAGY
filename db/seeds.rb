@@ -93,7 +93,7 @@
 #   unit: "1個(60g)" 
 # )
 CustomFood.create!(
-  id: 1,
+  # id: 1,
   name: "牛乳",
   calorie: 67,
   protein: 3.3,
@@ -101,10 +101,10 @@ CustomFood.create!(
   fat: 3.8,
   salt: 0.1,
   unit: "1個(60g)",
-  user_id: 1 # 適切なuser_idに置き換えてください
+  user_id: 1 
 )
 CustomFood.create!(
-  id: 2,
+  # id: 2,
   name: "豆腐",
   calorie: 56,
   protein: 5.2,
@@ -112,10 +112,10 @@ CustomFood.create!(
   fat: 3.0,
   salt: 0.1,
   unit: "1丁(150g)",
-  user_id: 1 # 適切なuser_idに置き換えてください
+  user_id: 1 
 )
 CustomFood.create!(
-  id: 3,
+  # id: 3,
   name: "りんご",
   calorie: 52,
   protein: 0.3,
@@ -123,10 +123,10 @@ CustomFood.create!(
   fat: 0.2,
   salt: 0,
   unit: "1個(200g)",
-  user_id: 1 # 適切なuser_idに置き換えてください
+  user_id: 1 
 )
 CustomFood.create!(
-  id: 4,
+  # id: 4,
   name: "プレーンヨーグルト",
   calorie: 61,
   protein: 3.8,
@@ -134,16 +134,16 @@ CustomFood.create!(
   fat: 3.3,
   salt: 0.1,
   unit: "1合(150g)",
-  user_id: 1 # 適切なuser_idに置き換えてください
+  user_id: 1 
 )
 CustomFood.create!(
-  id: 5,
+  # id: 5,
   name: "玄米",
   calorie: 356,
   protein: 7.3,
   carbo: 74.0,
   fat: 2.8,
   salt: 0.0,
-  unit: "1合(150g)"
+  unit: "1合(150g)",
   user_id: 1
 )
