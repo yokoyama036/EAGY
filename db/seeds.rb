@@ -136,7 +136,7 @@ CustomFood.create!(
   unit: "1合(150g)",
   user_id: 1 # 適切なuser_idに置き換えてください
 )
-CustomFood.create(
+CustomFood.create!(
   id: 5,
   name: "玄米",
   calorie: 356,
