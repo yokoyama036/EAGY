@@ -1,4 +1,4 @@
-Food.create(
+new_food = Food.create(
   id:1,
   name: "ご飯",
   calorie: 168,
@@ -8,6 +8,10 @@ Food.create(
   salt: 0,
   unit: "100g" 
 )
+if new_food.errors.any?
+  puts "エラー: #{new_food.errors.full_messages.join(', ')}"
+end
+
 Food.create(
   id:2,
   name: "牛もも肉",
