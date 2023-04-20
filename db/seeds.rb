@@ -1,4 +1,4 @@
-Food.create!(
+Food.create(
   id:1,
   name: "ご飯",
   calorie: 168,
@@ -8,7 +8,7 @@ Food.create!(
   salt: 0,
   unit: "100g" 
 )
-Food.create!(
+Food.create(
   id:2,
   name: "牛もも肉",
   calorie: 182,
@@ -18,7 +18,7 @@ Food.create!(
   salt: 0.1,
   unit: "100g" 
 )
-Food.create!(
+Food.create(
   id:3,
   name: "醤油",
   calorie: 13,
@@ -28,7 +28,7 @@ Food.create!(
   salt: 2.61,
   unit: "大さじ1(18g)" 
 )
-Food.create!(
+Food.create(
   id:4,
   name: "マヨネーズ",
   calorie: 84,
@@ -38,7 +38,7 @@ Food.create!(
   salt: 0.2,
   unit: "大さじ1(12g)" 
 )
-Food.create!(
+Food.create(
   id:5,
   name: "納豆",
   calorie: 100,
@@ -48,7 +48,7 @@ Food.create!(
   salt: 0,
   unit: "1パック(50g)" 
 )
-Food.create!(
+Food.create(
   id:6,
   name: "LYFT WPIアロエヨーグルト",
   calorie: 114,
@@ -58,7 +58,7 @@ Food.create!(
   salt: 0.05,
   unit: "30g" 
 )
-Food.create!(
+Food.create(
   id:7,
   name: "アボカド",
   calorie: 262,
@@ -68,7 +68,7 @@ Food.create!(
   salt: 0,
   unit: "140g(1個可食部のみ)" 
 )
-Food.create!(
+Food.create(
   id:8,
   name: "牛カルビ",
   calorie: 371,
@@ -78,7 +78,7 @@ Food.create!(
   salt: 0.1,
   unit: "100g" 
 )
-Food.create!(
+Food.create(
   id:9,
   name: "生卵",
   calorie: 91,
@@ -88,7 +88,7 @@ Food.create!(
   salt: 0.24,
   unit: "1個(60g)" 
 )
-CustomFood.create!(
+CustomFood.create(
   id:1,
   name: "牛乳",
   calorie: 67,
@@ -98,7 +98,7 @@ CustomFood.create!(
   salt: 0.1,
   unit: "1個(60g)" 
 )
-CustomFood.create!(
+CustomFood.create(
   id:1,
   name: "牛乳",
   calorie: 67,
@@ -108,7 +108,7 @@ CustomFood.create!(
   salt: 0.1,
   unit: "1個(60g)" 
 )
-CustomFood.create!(
+CustomFood.create(
   id: 2,
   name: "リンゴ",
   calorie: 52,
@@ -118,7 +118,7 @@ CustomFood.create!(
   salt: 0.0,
   unit: "1個(100g)"
 )
-CustomFood.create!(
+CustomFood.create(
   id: 3,
   name: "プレーンヨーグルト",
   calorie: 61,
@@ -128,7 +128,7 @@ CustomFood.create!(
   salt: 0.1,
   unit: "1個(100g)"
 )
-CustomFood.create!(
+CustomFood.create(
   id: 4,
   name: "サーモン",
   calorie: 208,
@@ -138,7 +138,7 @@ CustomFood.create!(
   salt: 0.1,
   unit: "1切れ(100g)"
 )
-CustomFood.create!(
+CustomFood.create(
   id: 5,
   name: "玄米",
   calorie: 356,
