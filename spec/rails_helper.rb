@@ -23,7 +23,24 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+def login(user)
+  visit new_user_session_path
+  fill_in "email", with: user.email
+  fill_in "password", with: user.password
+  click_on "ログイン"
+end
 
+def enter_physical_information(info)
+  visit new_user_physical_information_path
+  fill_in "user_physical_information_name", with: info[:name]
+  fill_in "height", with: info[:height]
+  fill_in "weight", with: info[:weight]
+  fill_in "age", with: info[:age]
+  choose info[:gender]
+  select info[:activity_level], from: "activity_level"
+  click_on "計算"
+  click_on "Save"
+end
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
