@@ -90,3 +90,7 @@ production:
 
   # Cache manifest.json for performance
   cache_manifest: true
+
+resolved_paths:
+  - node_modules
+  - ~/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/rails_admin-3.1.2/app/assets/javascripts

@@ -9,7 +9,6 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap";
 import '../stylesheets/application';
-import 'rails_admin/filter-box';
 
 Rails.start()
 Turbolinks.start()
