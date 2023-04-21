@@ -2,6 +2,7 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
+
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
@@ -36,7 +37,7 @@ def enter_physical_information(info)
   fill_in "height", with: info[:height]
   fill_in "weight", with: info[:weight]
   fill_in "age", with: info[:age]
-  choose info[:gender]
+  # choose info[:gender]
   select info[:activity_level], from: "activity_level"
   click_on "計算"
   click_on "Save"
@@ -57,7 +58,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-
+  config.include Devise::Test::IntegrationHelpers, type: :system
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

@@ -1,7 +1,7 @@
 <%= form_with(model: @custom_food, local: true) do |form| %>
   <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control', required: true, id: 'custom_food_name' %>
+    <%= form.label :食材名 %>
+    <%= form.text_field :name, class: 'form-control', required: true, id: 'custom_food_name', placeholder: '追加したい食材名を入力してください' %>
   </div>
   <%= link_to 'AIで栄養素を取得', '#', class: 'btn btn-secondary', id: 'fetch-nutrient-data' %>
   <div id="loader-bg" class="is-hide">
@@ -11,34 +11,34 @@
         </p>
     </div>
 </div>
-  <div class="form-group">
-    <%= form.label :calorie %>
-    <%= form.number_field :calorie, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_calorie' %>
+<div class="form-group">
+    <%= form.label :calorie, 'カロリー' %>
+    <%= form.number_field :calorie, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_calorie', placeholder: 'カロリーを入力してください' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :protein %>
-    <%= form.number_field :protein, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_protein' %>
+    <%= form.label :protein, 'タンパク質' %>
+    <%= form.number_field :protein, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_protein', placeholder: 'タンパク質量を入力してください' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :carbo %>
-    <%= form.number_field :carbo, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_carbo' %>
+    <%= form.label :carbo, '炭水化物' %>
+    <%= form.number_field :carbo, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_carbo', placeholder: '炭水化物量を入力してください' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :fat %>
-    <%= form.number_field :fat, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_fat' %>
+    <%= form.label :fat, '脂質' %>
+    <%= form.number_field :fat, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_fat', placeholder: '脂質量を入力してください' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :salt %>
-    <%= form.number_field :salt, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_salt' %>
+    <%= form.label :salt, '塩分' %>
+    <%= form.number_field :salt, step: "any", class: 'form-control', min: 0, required: true, id: 'custom_food_salt', placeholder: '塩分量を入力してください' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :unit %>
-    <%= form.text_field :unit, step: "any", class: 'form-control', required: true, id: 'custom_food_unit' %>
+    <%= form.label :unit, '単位数量' %>
+    <%= form.text_field :unit, step: "any", class: 'form-control', required: true, id: 'custom_food_unit', placeholder: '単位数量を入力 例:100g、大さじ1等' %>
   </div>
 
   <div class="form-group">

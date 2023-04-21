@@ -1,11 +1,11 @@
 <%= form_with(model: @myset, url: myset_path(@myset), method: :put, local: true) do |form| %>
   <div class="form-group">
-    <%= form.label :name %>
+    <%= form.label :Myset名 %>
     <%= form.text_field :name, class: "form-control", value: @myset.name %>
   </div>
 
   <div class="form-group">
-    <%= form.label :image %>
+    <%= form.label :Myset画像 %>
     <% if @myset.image.attached? %>
       <%= image_tag url_for(@myset.image.variant(resize: "300x300")), class: "img-fluid" %>
     <% end %>
@@ -17,7 +17,7 @@
       <tr>
         <th>食品名</th>
         <th>単位数量</th>
-        <th>分量</th>
+        <th>分量(%)</th>
         <th></th>
       </tr>
     </thead>

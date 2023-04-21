@@ -76,7 +76,7 @@
             <div class="modal-body">
               <%= form_with(scope: :myset, url: mysets_path, local: true ) do |form| %>
                 <%= form.label :"Myset名" %>
-                <%= form.text_field :name %>
+                <%= form.text_field :name, placeholder: 'Myset名を入力' %>
                 <div class="modal-footer">
                   <div class="actions">
                   <%= form.submit "作成", class: "btn btn-primary" %>
@@ -96,7 +96,7 @@
           </thead>
           <div class="field">
             <%= form.label :記録日 %>
-            <%= form.date_field :date %>
+            <%= form.date_field :date, value: @selected_date %>
           </div>
             <tbody>
               <% @mysets.each do |f| %>
@@ -131,13 +131,12 @@
                 </div>
                 <div class="modal-body">
                   <%= form_with(scope: :myset, url: myset_path(f.id), method: :put, local: true) do |m| %>
-                    <%= m.label :name %>
-                    <%= m.text_field :name %>
+                    <%= m.label :Myset名 %>
+                    <%= m.text_field :name, placeholder: 'Myset名を入力してくだい' %>
                     <div class="modal-footer">
                       <div class="actions">
                         <%= m.submit "変更", class: "btn btn-primary" %>
                       </div>
-                      <button type="button" class="btn btn-default" data-bs-dismiss="modal">閉じる</button>
                     </div>
                   <% end %>
                 </div>
