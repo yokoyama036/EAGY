@@ -5,17 +5,16 @@ FactoryBot.define do
     password_confirmation { "123456" }
     admin { true }
   end
-
-  # factory :user_physical_information, aliases: [:test] do
-  #   name { "test" }
-  #   metabolism { 1800 }
-  #   association :user
-  #   protein { 150.0 }
-  #   carbo { 200.0 }
-  #   fat { 70.0 }
-  #   salt { 3.5 }
-  # end
-
+  factory :user_physical_information, aliases: [:test] do
+    name { "John Doe" }
+    metabolism { 1800 }
+    association :user
+    protein { 150.0 }
+    carbo { 200.0 }
+    fat { 70.0 }
+    salt { 3.5 }
+  end
+  
   factory :food1, class: Food do
     name { "サンプル食品1" }
     calorie { 300 }
