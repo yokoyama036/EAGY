@@ -261,3 +261,12 @@ input[name="tab_item"] {
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
   display: inline-block; }
+
+.error-messages {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+  
