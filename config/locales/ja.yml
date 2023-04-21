@@ -221,3 +221,6 @@ ja:
               blank: "メールアドレスを入力してください"
             password:
               blank: "パスワードを入力してください"
+  simple_calendar:
+    previous: "前"
+    next: "次"

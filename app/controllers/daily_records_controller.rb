@@ -9,8 +9,9 @@ class DailyRecordsController < ApplicationController
     @daily_record = DailyRecord.new(date: params[:date])
     @selected_date = params[:selected_date]
     @foods = Food.all
-    @mysets = Myset.all
-    @custom_foods = CustomFood.all
+    @mysets = current_user.mysets 
+    @custom_foods = current_user.custom_foods
+    # ↑自分の設定のみ表示
     @daily_record.daily_record_items.build
     @q = Food.ransack(params[:q])
     @foods = @q.result(distinct: true)
