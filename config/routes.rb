@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'daily_records#index'
+  root 'daily_records#about'
   resources :foods
   resources :daily_records do
     collection do
