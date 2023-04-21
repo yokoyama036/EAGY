@@ -207,4 +207,17 @@ ja:
     registrations:
       user:
         signed_up: "アカウント登録が完了しました。"
-       
+  errors:
+    messages:
+      not_saved:
+        one: "%{resource}の登録に失敗しました。"
+        other: "%{resource}の登録に%{count}件のエラーがあります。"    
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "メールアドレスを入力してください"
+            password:
+              blank: "パスワードを入力してください"
