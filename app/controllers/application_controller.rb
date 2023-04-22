@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   require 'dotenv'
   Dotenv.load
   before_action :authenticate_user!
-  # before_action :check_user_physical_information
-  # ログイン後のリダイレクト先
+  
   def after_sign_in_path_for(resource_or_scope)
     daily_records_path  #ここを好きなパスに変更
   end

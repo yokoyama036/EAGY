@@ -4,11 +4,13 @@ class CustomFood < ApplicationRecord
   has_many :daily_record_items, dependent: :destroy
   has_many :daily_records, through: :daily_record_items
 
-  validates :calorie, numericality: true
-  validates :protein, numericality: true
-  validates :carbo, numericality: true
-  validates :fat, numericality: true
-  validates :salt, numericality: true
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :calorie, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :protein, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :carbo, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :fat, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :salt, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :unit, presence: true
 
   def total_calorie(amount)
     calorie * amount / 100
