@@ -20,39 +20,47 @@ class DailyRecordsController < ApplicationController
   def create
     @daily_record = DailyRecord.new(daily_record_params)
     @daily_record.user_id = current_user.id
-    #  @daily_record = DailyRecord.new(user_id: current_user.id, meal_timing: params[:daily_record][:meal_timing], date: params[:daily_record][:date], comment: params[:daily_record][:comment])
-    # @daily_record = DailyRecord.new(user_id: current_user.id, date: params[:daily_record][:date], comment: params[:daily_record][:comment])
+  
     if @daily_record.date.blank?
       flash[:alert] = '日付を選択してください。'
       redirect_to new_daily_record_path
       return
     end
+  
+    meal_timing_selected = false
+  
     if @daily_record.save
       items_created = 0
+  
       if params[:daily_record][:daily_record_items][:food_selections].present?
         params[:daily_record][:daily_record_items][:food_selections].each do |food_id, meal_timing|
-        next if meal_timing.blank?
+          next if meal_timing.blank?
           @daily_record.daily_record_items.create!(food_id: food_id, meal_timing: meal_timing)
           items_created += 1
+          meal_timing_selected = true
         end
-        flash[:alert] = '食事分類を選択してください。'
       end
+  
       if params[:daily_record][:daily_record_items][:myset_selections].present?
         params[:daily_record][:daily_record_items][:myset_selections].each do |myset_id, meal_timing|
-        next if meal_timing.blank?
+          next if meal_timing.blank?
           @daily_record.daily_record_items.create!(myset_id: myset_id, meal_timing: meal_timing)
-          items_created += 1       
+          items_created += 1
+          meal_timing_selected = true
         end
       end
+  
       if params[:daily_record][:daily_record_items][:custom_food_selections].present?
         params[:daily_record][:daily_record_items][:custom_food_selections].each do |custom_food_id, meal_timing|
-        next if meal_timing.blank?
+          next if meal_timing.blank?
           @daily_record.daily_record_items.create!(custom_food_id: custom_food_id, meal_timing: meal_timing)
           items_created += 1
+          meal_timing_selected = true
         end
       end
-      if items_created == 0
-        flash[:alert] = '記録できませんでした。'
+  
+      if items_created == 0 || !meal_timing_selected
+        flash[:alert] = '記録できませんでした。食事分類を選択してください。'
         @foods = Food.all
         @mysets = Myset.all
         @custom_foods = CustomFood.all
@@ -65,6 +73,7 @@ class DailyRecordsController < ApplicationController
       end
     end
   end
+  
  
   
   def edit

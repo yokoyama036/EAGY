@@ -19,7 +19,6 @@
           <table>
             <thead>
               <tr>
-                <th>食材選択</th>
                 <th>食品名</th>
                 <th>カロリー</th>
                 <th>タンパク質</th>
@@ -38,7 +37,6 @@
               <% @foods.each do |f| %>
                 <%= form.fields_for :daily_record_items do |item_form| %>
                   <tr>
-                    <td><%= item_form.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
                     <td><%= f.name %></td>
                     <td><%= f.calorie %></td>
                     <td><%= f.protein %></td>
@@ -102,7 +100,6 @@
               <% @mysets.each do |f| %>
                 <%= form.fields_for :daily_record_items do |item_form| %>
                   <tr>
-                    <td><%= item_form.check_box "food_ids[]", { multiple: true }, f.id, nil %></td>
                     <td><%= f.name %></td>
                     <td>
                       <div class="field">
@@ -154,7 +151,6 @@
         <table>
           <thead>
             <tr>
-              <th>食材選択</th>
               <th>食品名</th>
               <th>カロリー</th>
               <th>タンパク質</th>
@@ -173,7 +169,6 @@
             <% @custom_foods.each do |f| %>
               <%= form.fields_for :daily_record_items do |item_form| %>
                 <tr>
-                  <td><%= item_form.check_box "custom_food_ids[]", { multiple: true }, f.id, nil %></td>
                   <td><%= f.name %></td>
                   <td><%= f.calorie %></td>
                   <td><%= f.protein %></td>
