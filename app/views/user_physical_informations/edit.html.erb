@@ -2,7 +2,7 @@
 
 <%= form_with model: @user_info, url: user_physical_information_path(@user_info), method: :put, local: true do |form| %>
   <div class="form-floating mb-3">
-    <%= form.text_field :name, class: 'form-control', placeholder: '名前' %>
+    <%= form.text_field :name, class: 'form-control', placeholder: '名前(任意)' %>
     <label for="user_physical_information_name">名前</label>
   </div>
   <div class="form-floating mb-3">

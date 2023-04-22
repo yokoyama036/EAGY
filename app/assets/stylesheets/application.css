@@ -23,6 +23,8 @@ header {
   text-align: center;
   background-color: #0b0b0b;
   padding-left: 20px;
+  z-index: 1000;
+  margin-bottom: 0px;
 }
 .header li {
   vertical-align: center;
@@ -33,6 +35,10 @@ header {
 a.nav-link {
   text-align: right
 }
+.flash-message {
+  margin-top: 80px; /* ヘッダーの高さに応じて変更 */
+}
+
 .navbar-brand {
   font-size: 35px;
 }
@@ -269,4 +275,11 @@ input[name="tab_item"] {
   background-color: #f8d7da;
   color: #721c24;
 }
-  
+.centered-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  margin-bottom: 0;
+}
