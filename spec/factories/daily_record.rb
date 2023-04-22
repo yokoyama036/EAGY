@@ -5,17 +5,7 @@ FactoryBot.define do
     password_confirmation { "123456" }
     admin { true }
   end
-  factory :user_physical_information, aliases: [:test] do
-    name { "John Doe" }
-    metabolism { 1800 }
-    association :user
-    protein { 150.0 }
-    carbo { 200.0 }
-    fat { 70.0 }
-    salt { 3.5 }
-  end
-  
-  factory :food1, class: Food do
+  factory :food do
     name { "サンプル食品1" }
     calorie { 300 }
     protein { 10 }
@@ -24,7 +14,6 @@ FactoryBot.define do
     salt { 1 }
     unit { 100 }
   end
-
   factory :food2, class: Food do
     name { "サンプル食品2" }
     calorie { 250 }
@@ -34,7 +23,6 @@ FactoryBot.define do
     salt { 1.5 }
     unit { 120 }
   end
-
   factory :custom_food do
     user_id { 1 }
     name { "カスタム食品1" }
@@ -45,7 +33,6 @@ FactoryBot.define do
     salt { 1.2 }
     unit { 100 }
   end
-
   factory :myset do
     user_id { 1 }
     name { "朝食1" }
