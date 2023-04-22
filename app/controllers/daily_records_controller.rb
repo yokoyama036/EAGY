@@ -35,6 +35,7 @@ class DailyRecordsController < ApplicationController
           @daily_record.daily_record_items.create!(food_id: food_id, meal_timing: meal_timing)
           items_created += 1
         end
+        flash[:alert] = '食事分類を選択してください。'
       end
       if params[:daily_record][:daily_record_items][:myset_selections].present?
         params[:daily_record][:daily_record_items][:myset_selections].each do |myset_id, meal_timing|
@@ -64,7 +65,8 @@ class DailyRecordsController < ApplicationController
       end
     end
   end
-
+ 
+  
   def edit
     @daily_record = DailyRecord.find(params[:id])
     @daily_record_items = DailyRecordItem.includes(:food).joins(:daily_record).where(daily_records: { date: @daily_record.date, user_id: @daily_record.user_id })

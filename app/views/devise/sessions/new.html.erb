@@ -5,7 +5,7 @@
       <h1>Log in</h1>
       <div class="box-email">
         <%= f.label :email, "Eメール" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Eメール" %>
       </div>
       <div class="box-password">
         <div class="a-row">
@@ -16,7 +16,7 @@
             <%= link_to "パスワードを忘れた場合", new_user_password_path %>
           </div>
         </div>
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
       </div>
       <div class="box-login">
         <%= f.submit "ログイン" %>
