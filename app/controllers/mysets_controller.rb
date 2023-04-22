@@ -15,7 +15,7 @@ class MysetsController < ApplicationController
       flash[:success] = 'Mysetを作成しました。'
     else
       flash[:alert] = '作成できませんでした。'
-      render :new
+      redirect_to new_daily_record_path
     end
   end
 

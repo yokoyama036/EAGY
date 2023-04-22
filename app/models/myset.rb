@@ -6,7 +6,7 @@ class Myset < ApplicationRecord
   has_many :custom_foods, through: :myset_foods
   accepts_nested_attributes_for :myset_foods, allow_destroy: true
   has_one_attached :image
-
+  validates :name, presence: true, length: { maximum: 20 }
 
   def total_calorie(amount)
     myset_foods.includes(:food, :custom_food).sum do |myset_food|

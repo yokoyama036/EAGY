@@ -14,7 +14,12 @@ RailsAdmin.config do |config|
 
   ## == Pundit ==
   # config.authorize_with :pundit
-
+  config.authorize_with do
+    unless current_user && current_user.admin?
+      flash[:alert] = "管理者権限がありません。"
+      redirect_to main_app.daily_records_path
+    end
+  end
   ## == PaperTrail ==
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
