@@ -227,6 +227,59 @@ ja:
               too_short: "パスワードは%{count}文字以上で入力してください。"
             password_confirmation:
               confirmation: "パスワードが一致しません。"
+        user_physical_information:
+          attributes:
+            metabolism:
+              not_a_number: "数値を入力してください"
+        daily_record_item:
+          attributes:
+            meal_timing:
+              blank: "分類を選択してください"
+              inclusion: "リスト内から選択してください"
+        food:
+          attributes:
+            calorie:
+              not_a_number: 数値で入力してください
+            protein:
+              not_a_number: 数値で入力してください
+            carbo:
+              not_a_number: 数値で入力してください
+            fat:
+              not_a_number: 数値で入力してください
+            salt:
+              not_a_number: 数値で入力してください
+        custom_food:
+          attributes:
+            name:
+              blank: "食材名を入力してください"
+              too_long: "20文字以内で入力してください"
+            calorie:
+              blank: "カロリーを入力してください"
+              not_a_number: "数値で入力してください"
+              greater_than_or_equal_to: "0以上の値にしてください"
+            protein:
+              blank: "たんぱく質量を入力してください"
+              not_a_number: "数値で入力してください"
+              greater_than_or_equal_to: "0以上の値にしてください"
+            carbo:
+              blank: "炭水化物量を入力してください"
+              not_a_number: "数値で入力してください"
+              greater_than_or_equal_to: "0以上の値にしてください"
+            fat:
+              blank: "脂質量を入力してください"
+              not_a_number: "数値で入力してください"
+              greater_than_or_equal_to: "0以上の値にしてください"
+            salt:
+              blank: "塩分量を入力してください"
+              not_a_number: "数値で入力してください"
+              greater_than_or_equal_to: "0以上の値にしてください"
+            unit:
+              blank: "単位数量を入力してください"
+        myset:
+          attributes:
+            name:
+              blank: "myset名を入力してください"
+              too_long: "20文字以内で入力してください"
   simple_calendar:
     previous: "前"
     next: "次"
