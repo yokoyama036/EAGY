@@ -1,10 +1,10 @@
 FactoryBot.define do
-  factory :user do
-    email { '123456@gmail.com' }
-    password { "123456" }
-    password_confirmation { "123456" }
-    admin { true }
-  end
+  # factory :user do
+  #   email { '123456@gmail.com' }
+  #   password { "123456" }
+  #   password_confirmation { "123456" }
+  #   admin { true }
+  # end
   factory :food do
     name { "サンプル食品1" }
     calorie { 300 }
@@ -41,12 +41,18 @@ FactoryBot.define do
   factory :myset_food1, class: MysetFood do
     association :myset
     association :food, factory: :food1
-    amount { 1 }
+    amount { 100 }
   end
 
   factory :myset_food2, class: MysetFood do
     association :myset
     association :custom_food
     amount { 1 }
+  end
+
+  factory :daily_record do
+    user
+    date { Date.today }
+    comment { "MyString" }
   end
 end
