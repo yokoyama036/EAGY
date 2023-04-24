@@ -1,6 +1,8 @@
-<div class="error-messages">
-  <%= render "devise/shared/error_messages", resource: resource %>
-</div>
+<% if resource.errors.any? %>
+  <div class="error-messages">
+    <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
+<% end %>
 <div class="box1">
   <div class="box-inner">
     <h2>Sign up</h2>
