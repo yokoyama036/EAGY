@@ -200,6 +200,8 @@ ja:
     sessions:
       signed_out: "ログアウトしました"
       signed_in: "ログインしました"
+      user:
+        already_signed_out: "既にログアウト済みです。"
     failure:
       user:
         invalid: "メールアドレスまたはパスワードが正しくありません。"
