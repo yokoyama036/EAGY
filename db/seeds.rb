@@ -7,15 +7,15 @@
 #   salt: 0,
 #   unit: "100g" 
 # )
-# Food.create!(
-#   name: "牛もも肉",
-#   calorie: 182,
-#   protein: 21.2,
-#   carbo: 0.5,
-#   fat: 9.6,
-#   salt: 0.1,
-#   unit: "100g" 
-# )
+Food.create!(
+  name: "牛もも肉",
+  calorie: 182,
+  protein: 21.2,
+  carbo: 0.5,
+  fat: 9.6,
+  salt: 0.1,
+  unit: "100g" 
+)
 # Food.create!(
 #   name: "醤油",
 #   calorie: 13,

@@ -145,12 +145,10 @@ footer a {
 .tab_item:hover {
   opacity: 0.75;
 }
-
 /*ラジオボタンを全て消す*/
 input[name="tab_item"] {
   display: none;
 }
-
 /*タブ切り替えの中身のスタイル*/
 .tab_content {
   display: none;
@@ -158,7 +156,6 @@ input[name="tab_item"] {
   clear: both;
   overflow: hidden;
 }
-
 /*選択されているタブのコンテンツのみを表示*/
 #all:checked ~ #all_content,
 #myset:checked ~ #myset_content,
@@ -166,7 +163,6 @@ input[name="tab_item"] {
 #food:checked ~ #food_content {
   display: block;
 }
-
 /*選択されているタブのスタイルを変える*/
 .tabs input:checked + .tab_item {
   background-color: #e67811;

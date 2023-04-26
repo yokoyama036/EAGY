@@ -42,12 +42,11 @@ class CustomFoodsController < ApplicationController
     set_common_variable
     name = params[:name]
     if name.blank?
-      render json: { error: '食品名が入力されていません。' }, status: :bad_request
+      flash[:danger] = '食品名が入力されていません。'
       return
     end
     prompt = "#{name}のカロリー、タンパク質、炭水化物、脂質、塩分とその単位数量を次の形で出力して欲しい。カロリー: タンパク質: 炭水化物: 脂質: 塩分: 単位数量:"
     nutrient_data_string = chat_with_gpt(prompt)
-    # Extract the nutrient data from the response
     nutrient_data = nutrient_data_string.scan(/[-+]?\d*\.\d+|\d+/).map(&:to_f)
     calorie, protein, carbo, fat, salt, unit = nutrient_data
     render json: {
@@ -59,7 +58,6 @@ class CustomFoodsController < ApplicationController
       unit: unit
     }
   end
-
 
   private
 

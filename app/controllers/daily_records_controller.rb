@@ -74,8 +74,6 @@ class DailyRecordsController < ApplicationController
     end
   end
   
- 
-  
   def edit
     @daily_record = DailyRecord.find(params[:id])
     @daily_record_items = DailyRecordItem.includes(:food).joins(:daily_record).where(daily_records: { date: @daily_record.date, user_id: @daily_record.user_id })
@@ -103,12 +101,10 @@ class DailyRecordsController < ApplicationController
     redirect_to daily_record_path(@daily_record), notice: '記録を削除しました。'
   end
 
-
   def about
   end
 
   def search
-  
   end
   
   private
