@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource_or_scope)
     new_user_session_path #ここを好きなパスに変更
   end
+  
   private
 
   def check_user_physical_information
