@@ -36,7 +36,8 @@ a.nav-link {
   text-align: right
 }
 .flash-message {
-  margin-top: 80px; /* ヘッダーの高さに応じて変更 */
+  margin-top: 80px;
+  margin-bottom: 0px ;
 }
 
 .navbar-brand {
